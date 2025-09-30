@@ -10,6 +10,16 @@ namespace WheelManufacturing.Application.Interfaces
 {
     public interface ITerritoryRepository
     {
+        #region Country 
+
+        Task<int> SaveCountry(Country_Request parameters);
+
+        Task<IEnumerable<Country_Response>> GetCountryList(BaseSearchEntity parameters);
+
+        Task<Country_Response?> GetCountryById(long Id);
+
+        #endregion
+
         #region State 
 
         Task<int> SaveState(State_Request parameters);
@@ -54,7 +64,7 @@ namespace WheelManufacturing.Application.Interfaces
 
         Task<Territories_Response?> GetTerritoriesById(long Id);
 
-        Task<IEnumerable<Territories_State_Dist_City_Response>> GetTerritories_State_Dist_City_List_ById(Territories_State_Dist_City_Search parameters);
+        Task<IEnumerable<Territories_Country_State_Dist_Response>> GetTerritories_Country_State_Dist_List_ById(Territories_Country_State_Dist_Search parameters);
 
         Task<IEnumerable<TerritoriesDataValidationErrors>> ImportTerritories(List<ImportedTerritories> parameters);
 

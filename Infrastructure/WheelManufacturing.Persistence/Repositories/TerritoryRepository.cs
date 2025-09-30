@@ -20,6 +20,44 @@ namespace WheelManufacturing.Persistence.Repositories
             _configuration = configuration;
         }
 
+        #region Country
+
+        public async Task<int> SaveCountry(Country_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@CountryName", parameters.CountryName.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveCountry", queryParameters);
+        }
+
+        public async Task<IEnumerable<Country_Response>> GetCountryList(BaseSearchEntity parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<Country_Response>("GetCountryList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<Country_Response?> GetCountryById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<Country_Response>("GetCountryById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
         #region State
 
         public async Task<int> SaveState(State_Request parameters)
@@ -167,9 +205,10 @@ namespace WheelManufacturing.Persistence.Repositories
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@IsNational_Or_International", parameters.IsNational_Or_International);
+            queryParameters.Add("@CountryId", parameters.CountryId);
             queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistrictId", parameters.DistrictId);
-            queryParameters.Add("@CityId", parameters.CityId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -199,14 +238,14 @@ namespace WheelManufacturing.Persistence.Repositories
             return (await ListByStoredProcedure<Territories_Response>("GetTerritoriesById", queryParameters)).FirstOrDefault();
         }
 
-        public async Task<IEnumerable<Territories_State_Dist_City_Response>> GetTerritories_State_Dist_City_List_ById(Territories_State_Dist_City_Search parameters)
+        public async Task<IEnumerable<Territories_Country_State_Dist_Response>> GetTerritories_Country_State_Dist_List_ById(Territories_Country_State_Dist_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@CountryId", parameters.CountryId);
             queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistId", parameters.DistrictId);
-            queryParameters.Add("@CityId", parameters.CityId);
 
-            var result = await ListByStoredProcedure<Territories_State_Dist_City_Response>("GetTerritories_State_Dist_City_List_ById", queryParameters);
+            var result = await ListByStoredProcedure<Territories_Country_State_Dist_Response>("GetTerritories_Country_State_Dist_List_ById", queryParameters);
 
             return result;
         }

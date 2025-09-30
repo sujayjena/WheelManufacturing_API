@@ -27,6 +27,64 @@ namespace WheelManufacturing.API.Controllers.Admin
             _fileManager = fileManager;
         }
 
+        #region Country 
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveCountry(Country_Request parameters)
+        {
+            int result = await _territoryRepository.SaveCountry(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetCountryList(BaseSearchEntity parameters)
+        {
+            IEnumerable<Country_Response> lstCountrys = await _territoryRepository.GetCountryList(parameters);
+            _response.Data = lstCountrys.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetCountryById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _territoryRepository.GetCountryById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
         #region State 
 
         [Route("[action]")]
@@ -856,9 +914,9 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetTerritories_State_Dist_City_List_ById(Territories_State_Dist_City_Search parameters)
+        public async Task<ResponseModel> GetTerritories_Country_State_Dist_List_ById(Territories_Country_State_Dist_Search parameters)
         {
-            var vResultObj = await _territoryRepository.GetTerritories_State_Dist_City_List_ById(parameters);
+            var vResultObj = await _territoryRepository.GetTerritories_Country_State_Dist_List_ById(parameters);
             _response.Data = vResultObj;
 
             return _response;
@@ -906,10 +964,11 @@ namespace WheelManufacturing.API.Controllers.Admin
                 noOfCol = workSheet.Dimension.End.Column;
                 noOfRow = workSheet.Dimension.End.Row;
 
-                if (!string.Equals(workSheet.Cells[1, 1].Value.ToString(), "StateName", StringComparison.OrdinalIgnoreCase) ||
-                   !string.Equals(workSheet.Cells[1, 2].Value.ToString(), "DistrictName", StringComparison.OrdinalIgnoreCase) ||
-                   !string.Equals(workSheet.Cells[1, 3].Value.ToString(), "CityName", StringComparison.OrdinalIgnoreCase) ||
-                   !string.Equals(workSheet.Cells[1, 4].Value.ToString(), "IsActive", StringComparison.OrdinalIgnoreCase))
+                if (!string.Equals(workSheet.Cells[1, 1].Value.ToString(), "IsNational_Or_International", StringComparison.OrdinalIgnoreCase) ||
+                   !string.Equals(workSheet.Cells[1, 2].Value.ToString(), "CountryName", StringComparison.OrdinalIgnoreCase) ||
+                   !string.Equals(workSheet.Cells[1, 3].Value.ToString(), "StateName", StringComparison.OrdinalIgnoreCase) ||
+                   !string.Equals(workSheet.Cells[1, 4].Value.ToString(), "DistrictName", StringComparison.OrdinalIgnoreCase) ||
+                   !string.Equals(workSheet.Cells[1, 5].Value.ToString(), "IsActive", StringComparison.OrdinalIgnoreCase))
                 {
                     _response.IsSuccess = false;
                     _response.Message = "Please upload a valid excel file. Please Download Format file for reference";
@@ -920,10 +979,11 @@ namespace WheelManufacturing.API.Controllers.Admin
                 {
                     lstImportedTerritories.Add(new ImportedTerritories()
                     {
-                        StateName = workSheet.Cells[rowIterator, 1].Value?.ToString(),
-                        DistrictName = workSheet.Cells[rowIterator, 2].Value?.ToString(),
-                        CityName = workSheet.Cells[rowIterator, 3].Value?.ToString(),
-                        IsActive = workSheet.Cells[rowIterator, 4].Value?.ToString()
+                        IsNational_Or_International = workSheet.Cells[rowIterator, 1].Value?.ToString(),
+                        CountryName = workSheet.Cells[rowIterator, 2].Value?.ToString(),
+                        StateName = workSheet.Cells[rowIterator, 3].Value?.ToString(),
+                        DistrictName = workSheet.Cells[rowIterator, 4].Value?.ToString(),
+                        IsActive = workSheet.Cells[rowIterator, 5].Value?.ToString()
                     });
                 }
             }
@@ -970,30 +1030,28 @@ namespace WheelManufacturing.API.Controllers.Admin
                     WorkSheet1.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     WorkSheet1.Row(1).Style.Font.Bold = true;
 
-                    WorkSheet1.Cells[1, 1].Value = "StateName";
-                    WorkSheet1.Cells[1, 2].Value = "DistrictName";
-                    WorkSheet1.Cells[1, 3].Value = "CityName";;
-                    WorkSheet1.Cells[1, 4].Value = "IsActive";
-                    WorkSheet1.Cells[1, 5].Value = "ValidationMessage";
+                    WorkSheet1.Cells[1, 1].Value = "IsNational_Or_International";
+                    WorkSheet1.Cells[1, 2].Value = "CountryName";
+                    WorkSheet1.Cells[1, 3].Value = "StateName";
+                    WorkSheet1.Cells[1, 4].Value = "DistrictName";
+                    WorkSheet1.Cells[1, 5].Value = "IsActive";
+                    WorkSheet1.Cells[1, 6].Value = "ValidationMessage";
 
                     recordIndex = 2;
 
                     foreach (TerritoriesDataValidationErrors record in lstTerritoriesFailedToImport)
                     {
-                        WorkSheet1.Cells[recordIndex, 1].Value = record.StateName;
-                        WorkSheet1.Cells[recordIndex, 2].Value = record.DistrictName;
-                        WorkSheet1.Cells[recordIndex, 3].Value = record.CityName;
-                        WorkSheet1.Cells[recordIndex, 4].Value = record.IsActive;
-                        WorkSheet1.Cells[recordIndex, 5].Value = record.ValidationMessage;
+                        WorkSheet1.Cells[recordIndex, 1].Value = record.IsNational_Or_International;
+                        WorkSheet1.Cells[recordIndex, 2].Value = record.CountryName;
+                        WorkSheet1.Cells[recordIndex, 3].Value = record.StateName;
+                        WorkSheet1.Cells[recordIndex, 4].Value = record.DistrictName;
+                        WorkSheet1.Cells[recordIndex, 5].Value = record.IsActive;
+                        WorkSheet1.Cells[recordIndex, 6].Value = record.ValidationMessage;
 
                         recordIndex += 1;
                     }
 
-                    WorkSheet1.Column(1).AutoFit();
-                    WorkSheet1.Column(2).AutoFit();
-                    WorkSheet1.Column(3).AutoFit();
-                    WorkSheet1.Column(4).AutoFit();
-                    WorkSheet1.Column(5).AutoFit();
+                    WorkSheet1.Columns.AutoFit();
 
                     excelInvalidData.SaveAs(msInvalidDataFile);
                     msInvalidDataFile.Position = 0;
@@ -1031,37 +1089,34 @@ namespace WheelManufacturing.API.Controllers.Admin
                     WorkSheet1.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     WorkSheet1.Row(1).Style.Font.Bold = true;
 
-                    WorkSheet1.Cells[1, 1].Value = "State";
-                    WorkSheet1.Cells[1, 2].Value = "District";
-                    WorkSheet1.Cells[1, 3].Value = "City";
-                    WorkSheet1.Cells[1, 4].Value = "Status";
+                    WorkSheet1.Cells[1, 1].Value = "IsNational_Or_International";
+                    WorkSheet1.Cells[1, 2].Value = "Country";
+                    WorkSheet1.Cells[1, 3].Value = "State";
+                    WorkSheet1.Cells[1, 4].Value = "District";
+                    WorkSheet1.Cells[1, 5].Value = "Status";
 
-                    WorkSheet1.Cells[1, 5].Value = "CreatedDate";
-                    WorkSheet1.Cells[1, 6].Value = "CreatedBy";
+                    WorkSheet1.Cells[1, 6].Value = "CreatedDate";
+                    WorkSheet1.Cells[1, 7].Value = "CreatedBy";
 
 
                     recordIndex = 2;
 
                     foreach (var items in lstSizeObj)
                     {
-                        WorkSheet1.Cells[recordIndex, 1].Value = items.StateName;
-                        WorkSheet1.Cells[recordIndex, 2].Value = items.DistrictName;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.CityName;
-                        WorkSheet1.Cells[recordIndex, 4].Value = items.IsActive == true ? "Active" : "Inactive";
+                        WorkSheet1.Cells[recordIndex, 1].Value = items.IsNational_Or_International;
+                        WorkSheet1.Cells[recordIndex, 2].Value = items.CountryName;
+                        WorkSheet1.Cells[recordIndex, 3].Value = items.StateName;
+                        WorkSheet1.Cells[recordIndex, 4].Value = items.DistrictName;
+                        WorkSheet1.Cells[recordIndex, 5].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 5].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 5].Value = items.CreatedDate;
-                        WorkSheet1.Cells[recordIndex, 6].Value = items.CreatorName;
+                        WorkSheet1.Cells[recordIndex, 6].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 6].Value = items.CreatedDate;
+                        WorkSheet1.Cells[recordIndex, 7].Value = items.CreatorName;
 
                         recordIndex += 1;
                     }
 
-                    WorkSheet1.Column(1).AutoFit();
-                    WorkSheet1.Column(2).AutoFit();
-                    WorkSheet1.Column(3).AutoFit();
-                    WorkSheet1.Column(4).AutoFit();
-                    WorkSheet1.Column(5).AutoFit();
-                    WorkSheet1.Column(6).AutoFit();
+                    WorkSheet1.Columns.AutoFit();
 
                     excelExportData.SaveAs(msExportDataFile);
                     msExportDataFile.Position = 0;

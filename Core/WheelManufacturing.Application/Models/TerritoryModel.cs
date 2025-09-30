@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace WheelManufacturing.Application.Models
 {
@@ -12,19 +13,17 @@ namespace WheelManufacturing.Application.Models
     {
     }
 
-    #region Region
+    #region Country
 
-    public class Region_Request : BaseEntity
+    public class Country_Request : BaseEntity
     {
-        public string? RegionName { get; set; }
-
+        public string? CountryName { get; set; }
         public bool? IsActive { get; set; }
     }
 
-    public class Region_Response : BaseResponseEntity
+    public class Country_Response : BaseResponseEntity
     {
-        public string? RegionName { get; set; }
-
+        public string? CountryName { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -120,103 +119,59 @@ namespace WheelManufacturing.Application.Models
 
     #endregion
 
-    #region Area
-
-    public class Area_Request : BaseEntity
-    {
-        public string? AreaName { get; set; }
-
-        public bool? IsActive { get; set; }
-    }
-
-    public class Area_Response : BaseResponseEntity
-    {
-        public string? AreaName { get; set; }
-
-        public bool? IsActive { get; set; }
-    }
-
-    #endregion
-
-    #region City Grade
-
-    public class CityGrade_Request : BaseEntity
-    {
-        public string? CityGrade { get; set; }
-
-        public bool? IsActive { get; set; }
-    }
-
-    public class CityGrade_Response : BaseResponseEntity
-    {
-        public string? CityGrade { get; set; }
-
-        public bool? IsActive { get; set; }
-    }
-
-    #endregion
-
     #region Territories
 
     public class Territories_Request : BaseEntity
     {
+        [DefaultValue(1)]
+        public int? IsNational_Or_International { get; set; }
+        public int? CountryId { get; set; }
         public int? StateId { get; set; }
-
         public int? DistrictId { get; set; }
-
-        public int? CityId { get; set; }
-
         public bool? IsActive { get; set; }
     }
 
     public class Territories_Response : BaseResponseEntity
     {
+        public int? IsNational_Or_International { get; set; }
+        public int? CountryId { get; set; }
+        public string? CountryName { get; set; }
         public int? StateId { get; set; }
-
         public string? StateName { get; set; }
-
         public int? DistrictId { get; set; }
-
         public string? DistrictName { get; set; }
-
-        public int? CityId { get; set; }
-
-        public string? CityName { get; set; }
-
         public bool? IsActive { get; set; }
     }
 
-    public class Territories_State_Dist_City_Search
+    public class Territories_Country_State_Dist_Search
     {
+        public int? CountryId { get; set; }
         public int? StateId { get; set; }
-
         public int? DistrictId { get; set; }
-
-        public int? CityId { get; set; }
     }
 
-    public class Territories_State_Dist_City_Response
+    public class Territories_Country_State_Dist_Response
     {
         public int? Id { get; set; }
-
         public string? Value { get; set; }
-
         public string? Text { get; set; }
     }
 
     public class TerritoriesDataValidationErrors
     {
+        public string IsNational_Or_International { get; set; }
+        public string CountryName { get; set; }
         public string StateName { get; set; }
         public string DistrictName { get; set; }
-        public string CityName { get; set; }
         public string IsActive { get; set; }
         public string ValidationMessage { get; set; }
     }
     public class ImportedTerritories
     {
+        public string IsNational_Or_International { get; set; }
+        public string CountryName { get; set; }
         public string StateName { get; set; }
         public string DistrictName { get; set; }
-        public string CityName { get; set; }
         public string IsActive { get; set; }
     }
 
