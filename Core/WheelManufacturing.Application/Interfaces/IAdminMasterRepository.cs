@@ -41,5 +41,29 @@ namespace WheelManufacturing.Application.Interfaces
         Task<LeaveType_Response?> GetLeaveTypeById(long Id);
 
         #endregion
+
+        #region Gender
+
+        Task<int> SaveGender(Gender_Request parameters);
+        Task<IEnumerable<Gender_Response>> GetGenderList(Gender_Search parameters);
+        Task<Gender_Response?> GetGenderById(long Id);
+
+        #endregion
+
+        #region Marital Status
+
+        Task<int> SaveMaritalStatus(MaritalStatus_Request parameters);
+        Task<IEnumerable<MaritalStatus_Response>> GetMaritalStatusList(MaritalStatus_Search parameters);
+        Task<MaritalStatus_Response?> GetMaritalStatusById(long Id);
+
+        #endregion
+
+        #region Expense Type
+
+        Task<int> SaveExpenseType(ExpenseType_Request parameters);
+        Task<IEnumerable<ExpenseType_Response>> GetExpenseTypeList(ExpenseType_Search parameters);
+        Task<ExpenseType_Response?> GetExpenseTypeById(long Id);
+
+        #endregion
     }
 }

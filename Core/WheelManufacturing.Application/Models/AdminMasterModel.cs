@@ -88,4 +88,62 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Gender
+    public class Gender_Search : BaseSearchEntity
+    {
+    }
+
+    public class Gender_Request : BaseEntity
+    {
+        public string? Gender { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Gender_Response : BaseResponseEntity
+    {
+        public string? Gender { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Marital Status
+    public class MaritalStatus_Search : BaseSearchEntity
+    {
+    }
+
+    public class MaritalStatus_Request : BaseEntity
+    {
+        public string? MaritalStatus { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class MaritalStatus_Response : BaseResponseEntity
+    {
+        public string? MaritalStatus { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Expense Type
+
+    public class ExpenseType_Search : BaseSearchEntity
+    {
+    }
+
+    public class ExpenseType_Request : BaseEntity
+    {
+        public string? ExpenseType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class ExpenseType_Response : BaseResponseEntity
+    {
+        public string? ExpenseType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
