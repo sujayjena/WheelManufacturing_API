@@ -139,14 +139,13 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         #endregion
 
-        /*
-        #region Employee Level
+        #region Customer Type
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> SaveEmployeeLevel(EmployeeLevel_Request parameters)
+        public async Task<ResponseModel> SaveCustomerType(CustomerType_Request parameters)
         {
-            int result = await _adminMasterRepository.SaveEmployeeLevel(parameters);
+            int result = await _adminMasterRepository.SaveCustomerType(parameters);
 
             if (result == (int)SaveOperationEnums.NoRecordExists)
             {
@@ -172,9 +171,9 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetEmployeeLevelList(EmployeeLevel_Search parameters)
+        public async Task<ResponseModel> GetCustomerTypeList(CustomerType_Search parameters)
         {
-            IEnumerable<EmployeeLevel_Response> lstRoles = await _adminMasterRepository.GetEmployeeLevelList(parameters);
+            IEnumerable<CustomerType_Response> lstRoles = await _adminMasterRepository.GetCustomerTypeList(parameters);
             _response.Data = lstRoles.ToList();
             _response.Total = parameters.Total;
             return _response;
@@ -182,7 +181,7 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetEmployeeLevelById(long Id)
+        public async Task<ResponseModel> GetCustomerTypeById(long Id)
         {
             if (Id <= 0)
             {
@@ -190,13 +189,70 @@ namespace WheelManufacturing.API.Controllers.Admin
             }
             else
             {
-                var vResultObj = await _adminMasterRepository.GetEmployeeLevelById(Id);
+                var vResultObj = await _adminMasterRepository.GetCustomerTypeById(Id);
                 _response.Data = vResultObj;
             }
             return _response;
         }
 
         #endregion
-        */
+
+        #region Leave Type
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveLeaveType(LeaveType_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveLeaveType(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetLeaveTypeList(LeaveType_Search parameters)
+        {
+            IEnumerable<LeaveType_Response> lstRoles = await _adminMasterRepository.GetLeaveTypeList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetLeaveTypeById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetLeaveTypeById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
     }
 }

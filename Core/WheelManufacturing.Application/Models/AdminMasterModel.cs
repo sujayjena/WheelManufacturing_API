@@ -49,20 +49,41 @@ namespace WheelManufacturing.Application.Models
 
     #endregion
 
-    #region Employee Level
-    public class EmployeeLevel_Search : BaseSearchEntity
+    #region Customer Type
+
+    public class CustomerType_Search : BaseSearchEntity
     {
     }
 
-    public class EmployeeLevel_Request : BaseEntity
+    public class CustomerType_Request : BaseEntity
     {
-        public string? EmployeeLevel { get; set; }
+        public string? CustomerType { get; set; }
         public bool? IsActive { get; set; }
     }
 
-    public class EmployeeLevel_Response : BaseResponseEntity
+    public class CustomerType_Response : BaseResponseEntity
     {
-        public string? EmployeeLevel { get; set; }
+        public string? CustomerType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Leave Type
+
+    public class LeaveType_Search : BaseSearchEntity
+    {
+    }
+
+    public class LeaveType_Request : BaseEntity
+    {
+        public string? LeaveType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class LeaveType_Response : BaseResponseEntity
+    {
+        public string? LeaveType { get; set; }
         public bool? IsActive { get; set; }
     }
 

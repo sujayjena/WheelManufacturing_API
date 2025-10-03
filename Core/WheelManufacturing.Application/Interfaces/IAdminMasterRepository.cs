@@ -26,11 +26,19 @@ namespace WheelManufacturing.Application.Interfaces
 
         #endregion
 
-        #region Employee Level
+        #region Customer Type
 
-        Task<int> SaveEmployeeLevel(EmployeeLevel_Request parameters);
-        Task<IEnumerable<EmployeeLevel_Response>> GetEmployeeLevelList(EmployeeLevel_Search parameters);
-        Task<EmployeeLevel_Response?> GetEmployeeLevelById(long Id);
+        Task<int> SaveCustomerType(CustomerType_Request parameters);
+        Task<IEnumerable<CustomerType_Response>> GetCustomerTypeList(CustomerType_Search parameters);
+        Task<CustomerType_Response?> GetCustomerTypeById(long Id);
+
+        #endregion
+
+        #region Leave Type
+
+        Task<int> SaveLeaveType(LeaveType_Request parameters);
+        Task<IEnumerable<LeaveType_Response>> GetLeaveTypeList(LeaveType_Search parameters);
+        Task<LeaveType_Response?> GetLeaveTypeById(long Id);
 
         #endregion
     }
