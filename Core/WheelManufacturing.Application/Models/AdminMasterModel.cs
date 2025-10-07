@@ -146,4 +146,84 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Activity Type
+
+    public class ActivityType_Search : BaseSearchEntity
+    {
+    }
+
+    public class ActivityType_Request : BaseEntity
+    {
+        public string? ActivityType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class ActivityType_Response : BaseResponseEntity
+    {
+        public string? ActivityType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Activity Status
+
+    public class ActivityStatus_Search : BaseSearchEntity
+    {
+    }
+
+    public class ActivityStatus_Request : BaseEntity
+    {
+        public string? ActivityStatus { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class ActivityStatus_Response : BaseResponseEntity
+    {
+        public string? ActivityStatus { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Renewal Type
+
+    public class RenewalType_Search : BaseSearchEntity
+    {
+    }
+
+    public class RenewalType_Request : BaseEntity
+    {
+        public string? RenewalType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class RenewalType_Response : BaseResponseEntity
+    {
+        public string? RenewalType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Supplier Type
+
+    public class SupplierType_Search : BaseSearchEntity
+    {
+    }
+
+    public class SupplierType_Request : BaseEntity
+    {
+        public string? SupplierType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class SupplierType_Response : BaseResponseEntity
+    {
+        public string? SupplierType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }

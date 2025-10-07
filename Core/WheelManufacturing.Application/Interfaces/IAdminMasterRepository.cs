@@ -65,5 +65,37 @@ namespace WheelManufacturing.Application.Interfaces
         Task<ExpenseType_Response?> GetExpenseTypeById(long Id);
 
         #endregion
+
+        #region Activity Type
+
+        Task<int> SaveActivityType(ActivityType_Request parameters);
+        Task<IEnumerable<ActivityType_Response>> GetActivityTypeList(ActivityType_Search parameters);
+        Task<ActivityType_Response?> GetActivityTypeById(long Id);
+
+        #endregion
+
+        #region Activity Status
+
+        Task<int> SaveActivityStatus(ActivityStatus_Request parameters);
+        Task<IEnumerable<ActivityStatus_Response>> GetActivityStatusList(ActivityStatus_Search parameters);
+        Task<ActivityStatus_Response?> GetActivityStatusById(long Id);
+
+        #endregion
+
+        #region Renewal Type
+
+        Task<int> SaveRenewalType(RenewalType_Request parameters);
+        Task<IEnumerable<RenewalType_Response>> GetRenewalTypeList(RenewalType_Search parameters);
+        Task<RenewalType_Response?> GetRenewalTypeById(long Id);
+
+        #endregion
+
+        #region Supplier Type
+
+        Task<int> SaveSupplierType(SupplierType_Request parameters);
+        Task<IEnumerable<SupplierType_Response>> GetSupplierTypeList(SupplierType_Search parameters);
+        Task<SupplierType_Response?> GetSupplierTypeById(long Id);
+
+        #endregion
     }
 }
