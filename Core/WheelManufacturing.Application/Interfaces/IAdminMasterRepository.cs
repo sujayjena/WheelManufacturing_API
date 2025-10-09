@@ -90,6 +90,38 @@ namespace WheelManufacturing.Application.Interfaces
 
         #endregion
 
+        #region Priority
+
+        Task<int> SavePriority(Priority_Request parameters);
+        Task<IEnumerable<Priority_Response>> GetPriorityList(Priority_Search parameters);
+        Task<Priority_Response?> GetPriorityById(long Id);
+
+        #endregion
+
+        #region Version Details
+
+        Task<int> SaveVersionDetails(VersionDetails_Request parameters);
+        Task<IEnumerable<VersionDetails_Response>> GetVersionDetailsList(VersionDetails_Search parameters);
+        Task<VersionDetails_Response?> GetVersionDetailsById(long Id);
+
+        #endregion
+
+        #region UOM
+
+        Task<int> SaveUOM(UOM_Request parameters);
+        Task<IEnumerable<UOM_Response>> GetUOMList(UOM_Search parameters);
+        Task<UOM_Response?> GetUOMById(long Id);
+
+        #endregion
+
+        #region Warehouse
+
+        Task<int> SaveWarehouse(Warehouse_Request parameters);
+        Task<IEnumerable<Warehouse_Response>> GetWarehouseList(Warehouse_Search parameters);
+        Task<Warehouse_Response?> GetWarehouseById(long Id);
+
+        #endregion
+
         #region Supplier Type
 
         Task<int> SaveSupplierType(SupplierType_Request parameters);

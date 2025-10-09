@@ -207,6 +207,98 @@ namespace WheelManufacturing.Application.Models
 
     #endregion
 
+    #region Priority
+
+    public class Priority_Search : BaseSearchEntity
+    {
+    }
+
+    public class Priority_Request : BaseEntity
+    {
+        public string? PriorityName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Priority_Response : BaseResponseEntity
+    {
+        public string? PriorityName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Version Details
+
+    public class VersionDetails_Search : BaseSearchEntity
+    {
+        public string? PackageName { get; set; }
+        public string? UpdateType { get; set; }
+    }
+
+    public class VersionDetails_Request : BaseEntity
+    {
+        public int? AppVersionNo { get; set; }
+        public string? AppVersionName { get; set; }
+        public string? UpdateMsg { get; set; }
+        public string? PackageName { get; set; }
+        public string? UpdateType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class VersionDetails_Response : BaseResponseEntity
+    {
+        public int? AppVersionNo { get; set; }
+        public string? AppVersionName { get; set; }
+        public string? UpdateMsg { get; set; }
+        public string? PackageName { get; set; }
+        public string? UpdateType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region UOM
+
+    public class UOM_Search : BaseSearchEntity
+    {
+    }
+
+    public class UOM_Request : BaseEntity
+    {
+        public string? UOMName { get; set; }
+        public string? UOMDesc { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class UOM_Response : BaseResponseEntity
+    {
+        public string? UOMName { get; set; }
+        public string? UOMDesc { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Warehouse
+
+    public class Warehouse_Search : BaseSearchEntity
+    {
+    }
+
+    public class Warehouse_Request : BaseEntity
+    {
+        public string? WarehouseName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Warehouse_Response : BaseResponseEntity
+    {
+        public string? WarehouseName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
     #region Supplier Type
 
     public class SupplierType_Search : BaseSearchEntity

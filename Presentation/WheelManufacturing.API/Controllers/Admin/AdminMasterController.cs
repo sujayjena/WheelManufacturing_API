@@ -603,6 +603,238 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         #endregion
 
+        #region Priority
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SavePriority(Priority_Request parameters)
+        {
+            int result = await _adminMasterRepository.SavePriority(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPriorityList(Priority_Search parameters)
+        {
+            IEnumerable<Priority_Response> lstRoles = await _adminMasterRepository.GetPriorityList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPriorityById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetPriorityById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Version Details
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveVersionDetails(VersionDetails_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveVersionDetails(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetVersionDetailsList(VersionDetails_Search parameters)
+        {
+            IEnumerable<VersionDetails_Response> lstRoles = await _adminMasterRepository.GetVersionDetailsList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetVersionDetailsById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetVersionDetailsById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region UOM
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveUOM(UOM_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveUOM(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetUOMList(UOM_Search parameters)
+        {
+            IEnumerable<UOM_Response> lstRoles = await _adminMasterRepository.GetUOMList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetUOMById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetUOMById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Warehouse
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveWarehouse(Warehouse_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveWarehouse(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetWarehouseList(Warehouse_Search parameters)
+        {
+            IEnumerable<Warehouse_Response> lstRoles = await _adminMasterRepository.GetWarehouseList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetWarehouseById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetWarehouseById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
         #region Supplier Type
 
         [Route("[action]")]

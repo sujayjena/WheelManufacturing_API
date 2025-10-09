@@ -397,6 +397,165 @@ namespace WheelManufacturing.Persistence.Repositories
 
         #endregion
 
+        #region Priority
+
+        public async Task<int> SavePriority(Priority_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@PriorityName", parameters.PriorityName.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SavePriority", queryParameters);
+        }
+
+        public async Task<IEnumerable<Priority_Response>> GetPriorityList(Priority_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<Priority_Response>("GetPriorityList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<Priority_Response?> GetPriorityById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<Priority_Response>("GetPriorityById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Version Details
+
+        public async Task<int> SaveVersionDetails(VersionDetails_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@AppVersionNo", parameters.AppVersionNo);
+            queryParameters.Add("@AppVersionName", parameters.AppVersionName);
+            queryParameters.Add("@UpdateMsg", parameters.UpdateMsg);
+            queryParameters.Add("@PackageName", parameters.PackageName);
+            queryParameters.Add("@UpdateType", parameters.UpdateType);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveVersionDetails", queryParameters);
+        }
+
+        public async Task<IEnumerable<VersionDetails_Response>> GetVersionDetailsList(VersionDetails_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@PackageName", parameters.PackageName);
+            queryParameters.Add("@UpdateType", parameters.UpdateType);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<VersionDetails_Response>("GetVersionDetailsList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<VersionDetails_Response?> GetVersionDetailsById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<VersionDetails_Response>("GetVersionDetailsById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region UOM
+
+        public async Task<int> SaveUOM(UOM_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@UOMName", parameters.UOMName.SanitizeValue());
+            queryParameters.Add("@UOMDesc", parameters.UOMDesc.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveUOM", queryParameters);
+        }
+
+        public async Task<IEnumerable<UOM_Response>> GetUOMList(UOM_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<UOM_Response>("GetUOMList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<UOM_Response?> GetUOMById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<UOM_Response>("GetUOMById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Warehouse
+
+        public async Task<int> SaveWarehouse(Warehouse_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@WarehouseName", parameters.WarehouseName.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveWarehouse", queryParameters);
+        }
+
+        public async Task<IEnumerable<Warehouse_Response>> GetWarehouseList(Warehouse_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<Warehouse_Response>("GetWarehouseList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<Warehouse_Response?> GetWarehouseById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<Warehouse_Response>("GetWarehouseById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
         #region Supplier Type
 
         public async Task<int> SaveSupplierType(SupplierType_Request parameters)
