@@ -318,4 +318,224 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Die Category
+
+    public class DieCategory_Search : BaseSearchEntity
+    {
+    }
+
+    public class DieCategory_Request : BaseEntity
+    {
+        public string? DieCategory { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class DieCategory_Response : BaseResponseEntity
+    {
+        public string? DieCategory { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Model
+
+    public class Model_Search : BaseSearchEntity
+    {
+    }
+
+    public class Model_Request : BaseEntity
+    {
+        public string? ModelName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Model_Response : BaseResponseEntity
+    {
+        public string? ModelName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Wheel Diameter
+
+    public class WheelDiameter_Search : BaseSearchEntity
+    {
+    }
+
+    public class WheelDiameter_Request : BaseEntity
+    {
+        public string? WheelDiameter { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class WheelDiameter_Response : BaseResponseEntity
+    {
+        public string? WheelDiameter { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Wheel Width
+
+    public class WheelWidth_Search : BaseSearchEntity
+    {
+    }
+
+    public class WheelWidth_Request : BaseEntity
+    {
+        public string? WheelWidth { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class WheelWidth_Response : BaseResponseEntity
+    {
+        public string? WheelWidth { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region PCD_N_H
+
+    public class PCD_N_H_Search : BaseSearchEntity
+    {
+    }
+
+    public class PCD_N_H_Request : BaseEntity
+    {
+        public string? PCD_N_H { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class PCD_N_H_Response : BaseResponseEntity
+    {
+        public string? PCD_N_H { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Inset
+
+    public class Inset_Search : BaseSearchEntity
+    {
+    }
+
+    public class Inset_Request : BaseEntity
+    {
+        public string? InsetName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Inset_Response : BaseResponseEntity
+    {
+        public string? InsetName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Weight
+
+    public class Weight_Search : BaseSearchEntity
+    {
+    }
+
+    public class Weight_Request : BaseEntity
+    {
+        public string? WeightName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Weight_Response : BaseResponseEntity
+    {
+        public string? WeightName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Tyre Size
+
+    public class TyreSize_Search : BaseSearchEntity
+    {
+    }
+
+    public class TyreSize_Request : BaseEntity
+    {
+        public string? TyreSize { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class TyreSize_Response : BaseResponseEntity
+    {
+        public string? TyreSize { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Bolt Hole Type
+
+    public class BoltHoleType_Search : BaseSearchEntity
+    {
+    }
+
+    public class BoltHoleType_Request : BaseEntity
+    {
+        public string? BoltHoleType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class BoltHoleType_Response : BaseResponseEntity
+    {
+        public string? BoltHoleType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Paint
+
+    public class Paint_Search : BaseSearchEntity
+    {
+    }
+
+    public class Paint_Request : BaseEntity
+    {
+        public string? PaintName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Paint_Response : BaseResponseEntity
+    {
+        public string? PaintName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Material Group
+
+    public class MaterialGroup_Search : BaseSearchEntity
+    {
+    }
+
+    public class MaterialGroup_Request : BaseEntity
+    {
+        public string? MaterialGroup { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class MaterialGroup_Response : BaseResponseEntity
+    {
+        public string? MaterialGroup { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }

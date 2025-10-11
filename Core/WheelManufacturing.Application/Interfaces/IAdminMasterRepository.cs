@@ -129,5 +129,93 @@ namespace WheelManufacturing.Application.Interfaces
         Task<SupplierType_Response?> GetSupplierTypeById(long Id);
 
         #endregion
+
+        #region Die Category
+
+        Task<int> SaveDieCategory(DieCategory_Request parameters);
+        Task<IEnumerable<DieCategory_Response>> GetDieCategoryList(DieCategory_Search parameters);
+        Task<DieCategory_Response?> GetDieCategoryById(long Id);
+
+        #endregion
+
+        #region Model
+
+        Task<int> SaveModel(Model_Request parameters);
+        Task<IEnumerable<Model_Response>> GetModelList(Model_Search parameters);
+        Task<Model_Response?> GetModelById(long Id);
+
+        #endregion
+
+        #region Wheel Diameter
+
+        Task<int> SaveWheelDiameter(WheelDiameter_Request parameters);
+        Task<IEnumerable<WheelDiameter_Response>> GetWheelDiameterList(WheelDiameter_Search parameters);
+        Task<WheelDiameter_Response?> GetWheelDiameterById(long Id);
+
+        #endregion
+
+        #region Wheel Width
+
+        Task<int> SaveWheelWidth(WheelWidth_Request parameters);
+        Task<IEnumerable<WheelWidth_Response>> GetWheelWidthList(WheelWidth_Search parameters);
+        Task<WheelWidth_Response?> GetWheelWidthById(long Id);
+
+        #endregion
+
+        #region PCD_N_H
+
+        Task<int> SavePCD_N_H(PCD_N_H_Request parameters);
+        Task<IEnumerable<PCD_N_H_Response>> GetPCD_N_HList(PCD_N_H_Search parameters);
+        Task<PCD_N_H_Response?> GetPCD_N_HById(long Id);
+
+        #endregion
+
+        #region Inset
+
+        Task<int> SaveInset(Inset_Request parameters);
+        Task<IEnumerable<Inset_Response>> GetInsetList(Inset_Search parameters);
+        Task<Inset_Response?> GetInsetById(long Id);
+
+        #endregion
+
+        #region Weight
+
+        Task<int> SaveWeight(Weight_Request parameters);
+        Task<IEnumerable<Weight_Response>> GetWeightList(Weight_Search parameters);
+        Task<Weight_Response?> GetWeightById(long Id);
+
+        #endregion
+
+        #region Tyre Size
+
+        Task<int> SaveTyreSize(TyreSize_Request parameters);
+        Task<IEnumerable<TyreSize_Response>> GetTyreSizeList(TyreSize_Search parameters);
+        Task<TyreSize_Response?> GetTyreSizeById(long Id);
+
+        #endregion
+
+        #region Bolt Hole Type
+
+        Task<int> SaveBoltHoleType(BoltHoleType_Request parameters);
+        Task<IEnumerable<BoltHoleType_Response>> GetBoltHoleTypeList(BoltHoleType_Search parameters);
+        Task<BoltHoleType_Response?> GetBoltHoleTypeById(long Id);
+
+        #endregion
+
+        #region Paint
+
+        Task<int> SavePaint(Paint_Request parameters);
+        Task<IEnumerable<Paint_Response>> GetPaintList(Paint_Search parameters);
+        Task<Paint_Response?> GetPaintById(long Id);
+
+        #endregion
+
+        #region Material Group
+
+        Task<int> SaveMaterialGroup(MaterialGroup_Request parameters);
+        Task<IEnumerable<MaterialGroup_Response>> GetMaterialGroupList(MaterialGroup_Search parameters);
+        Task<MaterialGroup_Response?> GetMaterialGroupById(long Id);
+
+        #endregion
     }
 }
