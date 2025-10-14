@@ -217,5 +217,21 @@ namespace WheelManufacturing.Application.Interfaces
         Task<MaterialGroup_Response?> GetMaterialGroupById(long Id);
 
         #endregion
+
+        #region Material Name
+
+        Task<int> SaveMaterialName(MaterialName_Request parameters);
+        Task<IEnumerable<MaterialName_Response>> GetMaterialNameList(MaterialName_Search parameters);
+        Task<MaterialName_Response?> GetMaterialNameById(long Id);
+
+        #endregion
+
+        #region Supply Term
+
+        Task<int> SaveSupplyTerm(SupplyTerm_Request parameters);
+        Task<IEnumerable<SupplyTerm_Response>> GetSupplyTermList(SupplyTerm_Search parameters);
+        Task<SupplyTerm_Response?> GetSupplyTermById(long Id);
+
+        #endregion
     }
 }

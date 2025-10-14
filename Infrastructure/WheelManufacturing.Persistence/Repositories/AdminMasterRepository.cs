@@ -1011,5 +1011,82 @@ namespace WheelManufacturing.Persistence.Repositories
         }
 
         #endregion
+
+        #region Material Name
+
+        public async Task<int> SaveMaterialName(MaterialName_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@MaterialName", parameters.MaterialName.SanitizeValue());
+            queryParameters.Add("@UOMId", parameters.UOMId);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveMaterialName", queryParameters);
+        }
+
+        public async Task<IEnumerable<MaterialName_Response>> GetMaterialNameList(MaterialName_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<MaterialName_Response>("GetMaterialNameList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<MaterialName_Response?> GetMaterialNameById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<MaterialName_Response>("GetMaterialNameById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Supply Term
+
+        public async Task<int> SaveSupplyTerm(SupplyTerm_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@SupplyTermName", parameters.SupplyTermName.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveSupplyTerm", queryParameters);
+        }
+
+        public async Task<IEnumerable<SupplyTerm_Response>> GetSupplyTermList(SupplyTerm_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<SupplyTerm_Response>("GetSupplyTermList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<SupplyTerm_Response?> GetSupplyTermById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<SupplyTerm_Response>("GetSupplyTermById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
     }
 }

@@ -1529,5 +1529,121 @@ namespace WheelManufacturing.API.Controllers.Admin
         }
 
         #endregion
+
+        #region Material Name
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveMaterialName(MaterialName_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveMaterialName(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialNameList(MaterialName_Search parameters)
+        {
+            IEnumerable<MaterialName_Response> lstRoles = await _adminMasterRepository.GetMaterialNameList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialNameById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetMaterialNameById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Supply Term
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveSupplyTerm(SupplyTerm_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveSupplyTerm(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetSupplyTermList(SupplyTerm_Search parameters)
+        {
+            IEnumerable<SupplyTerm_Response> lstRoles = await _adminMasterRepository.GetSupplyTermList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetSupplyTermById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetSupplyTermById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
     }
 }

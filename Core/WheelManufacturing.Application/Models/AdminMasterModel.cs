@@ -538,4 +538,47 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Material Name
+
+    public class MaterialName_Search : BaseSearchEntity
+    {
+    }
+
+    public class MaterialName_Request : BaseEntity
+    {
+        public string? MaterialName { get; set; }
+        public int? UOMId { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class MaterialName_Response : BaseResponseEntity
+    {
+        public string? MaterialName { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Supply Term
+
+    public class SupplyTerm_Search : BaseSearchEntity
+    {
+    }
+
+    public class SupplyTerm_Request : BaseEntity
+    {
+        public string? SupplyTermName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class SupplyTerm_Response : BaseResponseEntity
+    {
+        public string? SupplyTermName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
