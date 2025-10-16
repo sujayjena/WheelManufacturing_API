@@ -1,8 +1,9 @@
-﻿using WheelManufacturing.Application.Enums;
+﻿using Microsoft.AspNetCore.Mvc;
+using WheelManufacturing.Application.Enums;
+using WheelManufacturing.Application.Helpers;
 using WheelManufacturing.Application.Interfaces;
 using WheelManufacturing.Application.Models;
 using WheelManufacturing.Persistence.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 namespace WheelManufacturing.API.Controllers.Admin
 {
@@ -14,10 +15,12 @@ namespace WheelManufacturing.API.Controllers.Admin
         private readonly IAdminMasterRepository _adminMasterRepository;
 
         private readonly IConfigRefRepository _configRefRepository;
+        private IFileManager _fileManager;
 
-        public AdminMasterController(IAdminMasterRepository adminMasterRepository)
+        public AdminMasterController(IAdminMasterRepository adminMasterRepository, IFileManager fileManager)
         {
             _adminMasterRepository = adminMasterRepository;
+            _fileManager = fileManager;
 
             _response = new ResponseModel();
             _response.IsSuccess = true;
@@ -1472,6 +1475,75 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         #endregion
 
+        #region Product Master
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveProductMaster(ProductMaster_Request parameters)
+        {
+            //Upload Image
+            if (parameters! != null && !string.IsNullOrWhiteSpace(parameters.UploadImage_Base64))
+            {
+                var vUploadFile = _fileManager.UploadDocumentsBase64ToFile(parameters.UploadImage_Base64, "\\Uploads\\ProductMaster\\", parameters.UploadImageOriginalFileName);
+
+                if (!string.IsNullOrWhiteSpace(vUploadFile))
+                {
+                    parameters.UploadImageFileName = vUploadFile;
+                }
+            }
+
+            int result = await _adminMasterRepository.SaveProductMaster(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetProductMasterList(ProductMaster_Search parameters)
+        {
+            IEnumerable<ProductMaster_Response> lstRoles = await _adminMasterRepository.GetProductMasterList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetProductMasterById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetProductMasterById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
         #region Material Group
 
         [Route("[action]")]
@@ -1581,6 +1653,64 @@ namespace WheelManufacturing.API.Controllers.Admin
             else
             {
                 var vResultObj = await _adminMasterRepository.GetMaterialNameById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Material Master
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveMaterialMaster(MaterialMaster_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveMaterialMaster(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialMasterList(MaterialMaster_Search parameters)
+        {
+            IEnumerable<MaterialMaster_Response> lstRoles = await _adminMasterRepository.GetMaterialMasterList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialMasterById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetMaterialMasterById(Id);
                 _response.Data = vResultObj;
             }
             return _response;

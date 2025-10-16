@@ -210,6 +210,14 @@ namespace WheelManufacturing.Application.Interfaces
 
         #endregion
 
+        #region Product Master
+
+        Task<int> SaveProductMaster(ProductMaster_Request parameters);
+        Task<IEnumerable<ProductMaster_Response>> GetProductMasterList(ProductMaster_Search parameters);
+        Task<ProductMaster_Response?> GetProductMasterById(long Id);
+
+        #endregion
+
         #region Material Group
 
         Task<int> SaveMaterialGroup(MaterialGroup_Request parameters);
@@ -223,6 +231,14 @@ namespace WheelManufacturing.Application.Interfaces
         Task<int> SaveMaterialName(MaterialName_Request parameters);
         Task<IEnumerable<MaterialName_Response>> GetMaterialNameList(MaterialName_Search parameters);
         Task<MaterialName_Response?> GetMaterialNameById(long Id);
+
+        #endregion
+
+        #region Material Master
+
+        Task<int> SaveMaterialMaster(MaterialMaster_Request parameters);
+        Task<IEnumerable<MaterialMaster_Response>> GetMaterialMasterList(MaterialMaster_Search parameters);
+        Task<MaterialMaster_Response?> GetMaterialMasterById(long Id);
 
         #endregion
 

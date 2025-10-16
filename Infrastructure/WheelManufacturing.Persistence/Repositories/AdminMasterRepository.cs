@@ -974,6 +974,55 @@ namespace WheelManufacturing.Persistence.Repositories
 
         #endregion
 
+        #region Product Master
+
+        public async Task<int> SaveProductMaster(ProductMaster_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@DieCategoryId", parameters.DieCategoryId);
+            queryParameters.Add("@ModelId", parameters.ModelId);
+            queryParameters.Add("@WheelDiameterId", parameters.WheelDiameterId);
+            queryParameters.Add("@WheelWidthId", parameters.WheelWidthId);
+            queryParameters.Add("@PCD_N_HId", parameters.PCD_N_HId);
+            queryParameters.Add("@InsetId", parameters.InsetId);
+            queryParameters.Add("@WeightId", parameters.WeightId);
+            queryParameters.Add("@TyreSizeId", parameters.TyreSizeId);
+            queryParameters.Add("@BoltHoleTypeId", parameters.BoltHoleTypeId);
+            queryParameters.Add("@PaintId", parameters.PaintId);
+            queryParameters.Add("@UploadImageOriginalFileName", parameters.UploadImageOriginalFileName);
+            queryParameters.Add("@UploadImageFileName", parameters.UploadImageFileName);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveProductMaster", queryParameters);
+        }
+
+        public async Task<IEnumerable<ProductMaster_Response>> GetProductMasterList(ProductMaster_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<ProductMaster_Response>("GetProductMasterList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<ProductMaster_Response?> GetProductMasterById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<ProductMaster_Response>("GetProductMasterById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
         #region Material Group
 
         public async Task<int> SaveMaterialGroup(MaterialGroup_Request parameters)
@@ -1047,6 +1096,45 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", Id);
             return (await ListByStoredProcedure<MaterialName_Response>("GetMaterialNameById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Material Master
+
+        public async Task<int> SaveMaterialMaster(MaterialMaster_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@MaterialGroupId", parameters.MaterialGroupId);
+            queryParameters.Add("@MaterialNameId", parameters.MaterialNameId);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveMaterialMaster", queryParameters);
+        }
+
+        public async Task<IEnumerable<MaterialMaster_Response>> GetMaterialMasterList(MaterialMaster_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<MaterialMaster_Response>("GetMaterialMasterList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<MaterialMaster_Response?> GetMaterialMasterById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<MaterialMaster_Response>("GetMaterialMasterById", queryParameters)).FirstOrDefault();
         }
 
         #endregion

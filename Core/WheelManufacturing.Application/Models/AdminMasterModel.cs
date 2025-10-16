@@ -519,6 +519,60 @@ namespace WheelManufacturing.Application.Models
 
     #endregion
 
+    #region Product Master
+
+    public class ProductMaster_Search : BaseSearchEntity
+    {
+    }
+
+    public class ProductMaster_Request : BaseEntity
+    {
+        public int? DieCategoryId { get; set; }
+        public int? ModelId { get; set; }
+        public int? WheelDiameterId { get; set; }
+        public int? WheelWidthId { get; set; }
+        public int? PCD_N_HId { get; set; }
+        public int? InsetId { get; set; }
+        public int? WeightId { get; set; }
+        public int? TyreSizeId { get; set; }
+        public int? BoltHoleTypeId { get; set; }
+        public int? PaintId { get; set; }
+        public string? UploadImageOriginalFileName { get; set; }
+        public string? UploadImageFileName { get; set; }
+        public string? UploadImage_Base64 { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class ProductMaster_Response : BaseResponseEntity
+    {
+        public int? DieCategoryId { get; set; }
+        public string? DieCategory { get; set; }
+        public int? ModelId { get; set; }
+        public string? ModelName { get; set; }
+        public int? WheelDiameterId { get; set; }
+        public string? WheelDiameter { get; set; }
+        public int? WheelWidthId { get; set; }
+        public string? WheelWidth { get; set; }
+        public int? PCD_N_HId { get; set; }
+        public string? PCD_N_H { get; set; }
+        public int? InsetId { get; set; }
+        public string? InsetName { get; set; }
+        public int? WeightId { get; set; }
+        public string? WeightName { get; set; }
+        public int? TyreSizeId { get; set; }
+        public string? TyreSize { get; set; }
+        public int? BoltHoleTypeId { get; set; }
+        public string? BoltHoleType { get; set; }
+        public int? PaintId { get; set; }
+        public string? PaintName { get; set; }
+        public string? UploadImageOriginalFileName { get; set; }
+        public string? UploadImageFileName { get; set; }
+        public string? UploadImageURL { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
     #region Material Group
 
     public class MaterialGroup_Search : BaseSearchEntity
@@ -554,6 +608,32 @@ namespace WheelManufacturing.Application.Models
 
     public class MaterialName_Response : BaseResponseEntity
     {
+        public string? MaterialName { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Material Master
+
+    public class MaterialMaster_Search : BaseSearchEntity
+    {
+    }
+
+    public class MaterialMaster_Request : BaseEntity
+    {
+        public int? MaterialGroupId { get; set; }
+        public int? MaterialNameId { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class MaterialMaster_Response : BaseResponseEntity
+    {
+        public int? MaterialGroupId { get; set; }
+        public string? MaterialGroup { get; set; }
+        public int? MaterialNameId { get; set; }
         public string? MaterialName { get; set; }
         public int? UOMId { get; set; }
         public string? UOMName { get; set; }
