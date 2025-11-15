@@ -661,4 +661,24 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Payment Mode
+
+    public class PaymentMode_Search : BaseSearchEntity
+    {
+    }
+
+    public class PaymentMode_Request : BaseEntity
+    {
+        public string? PaymentMode { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class PaymentMode_Response : BaseResponseEntity
+    {
+        public string? PaymentMode { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }

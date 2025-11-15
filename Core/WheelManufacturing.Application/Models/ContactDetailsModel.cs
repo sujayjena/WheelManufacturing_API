@@ -23,7 +23,7 @@ namespace WheelManufacturing.Application.Models
     {
         public int? RefId { get; set; }
         public string? RefType { get; set; }
-        public string? CustomerName { get; set; }
+        //public string? CustomerName { get; set; }
         public string? ContactPerson { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailId { get; set; }

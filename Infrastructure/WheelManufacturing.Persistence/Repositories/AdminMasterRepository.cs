@@ -1176,5 +1176,43 @@ namespace WheelManufacturing.Persistence.Repositories
         }
 
         #endregion
+
+        #region Payment Mode
+
+        public async Task<int> SavePaymentMode(PaymentMode_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@PaymentMode", parameters.PaymentMode.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SavePaymentMode", queryParameters);
+        }
+
+        public async Task<IEnumerable<PaymentMode_Response>> GetPaymentModeList(PaymentMode_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<PaymentMode_Response>("GetPaymentModeList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<PaymentMode_Response?> GetPaymentModeById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<PaymentMode_Response>("GetPaymentModeById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
     }
 }

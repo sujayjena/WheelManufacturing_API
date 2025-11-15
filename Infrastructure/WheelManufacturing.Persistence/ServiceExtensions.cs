@@ -43,6 +43,7 @@ namespace WheelManufacturing.Persistence
             services.AddScoped<IBillingDetailsRepository, BillingDetailsRepository>();
             services.AddScoped<IShippingDetailsRepository, ShippingDetailsRepository>();
             services.AddScoped<ILoginCredentialsRepository, LoginCredentialsRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
         }
     }
 }
