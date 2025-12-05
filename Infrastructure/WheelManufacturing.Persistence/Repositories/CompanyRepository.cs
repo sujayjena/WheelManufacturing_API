@@ -35,6 +35,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@TaxNumber", parameters.TaxNumber);
             queryParameters.Add("@AddressLine1", parameters.AddressLine1);
             queryParameters.Add("@AddressLine2", parameters.AddressLine2);
+            queryParameters.Add("@CountryId", parameters.CountryId);
             queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@CityId", parameters.CityId);

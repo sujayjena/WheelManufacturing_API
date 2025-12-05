@@ -214,7 +214,6 @@ namespace WheelManufacturing.API.Controllers
             return _response;
         }
 
-
         [Route("[action]")]
         [HttpPost]
         public async Task<ResponseModel> GetCustomerList(CustomerSearch_Request parameters)
