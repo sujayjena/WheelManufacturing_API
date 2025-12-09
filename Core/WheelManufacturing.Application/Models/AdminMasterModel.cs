@@ -624,13 +624,17 @@ namespace WheelManufacturing.Application.Models
 
     public class MaterialMaster_Request : BaseEntity
     {
+        public int? DepartmentId { get; set; }
         public int? MaterialGroupId { get; set; }
+        public int? UOMId { get; set; }
         public int? MaterialNameId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class MaterialMaster_Response : BaseResponseEntity
     {
+        public int? DepartmentId { get; set; }
+        public string? DepartmentName { get; set; }
         public int? MaterialGroupId { get; set; }
         public string? MaterialGroup { get; set; }
         public int? MaterialNameId { get; set; }
@@ -677,6 +681,30 @@ namespace WheelManufacturing.Application.Models
     public class PaymentMode_Response : BaseResponseEntity
     {
         public string? PaymentMode { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Terms Condition
+
+    public class TermsCondition_Search : BaseSearchEntity
+    {
+    }
+
+    public class TermsCondition_Request : BaseEntity
+    {
+        public string? TermsConditionName { get; set; }
+
+        [DefaultValue(false)]
+        public bool? IsStandard { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class TermsCondition_Response : BaseResponseEntity
+    {
+        public string? TermsConditionName { get; set; }
+        public bool? IsStandard { get; set; }
         public bool? IsActive { get; set; }
     }
 

@@ -257,5 +257,13 @@ namespace WheelManufacturing.Application.Interfaces
         Task<PaymentMode_Response?> GetPaymentModeById(long Id);
 
         #endregion
+
+        #region Terms Condition
+
+        Task<int> SaveTermsCondition(TermsCondition_Request parameters);
+        Task<IEnumerable<TermsCondition_Response>> GetTermsConditionList(TermsCondition_Search parameters);
+        Task<TermsCondition_Response?> GetTermsConditionById(long Id);
+
+        #endregion
     }
 }
