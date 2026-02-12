@@ -213,8 +213,6 @@ namespace WheelManufacturing.API.Controllers
                             CompanyName = vUserDetail != null ? vUserDetail.CompanyName : String.Empty,
                             DepartmentId = vUserDetail != null ? Convert.ToInt32(vUserDetail.DepartmentId) : 0,
                             DepartmentName = vUserDetail != null ? vUserDetail.DepartmentName : String.Empty,
-                            EmployeeLevelId = vUserDetail != null ? Convert.ToInt32(vUserDetail.EmployeeLevelId) : 0,
-                            EmployeeLevel = vUserDetail != null ? vUserDetail.EmployeeLevel : String.Empty,
 
                             ProfileImage = vUserDetail != null ? vUserDetail.ProfileImage : String.Empty,
                             ProfileOriginalFileName = vUserDetail != null ? vUserDetail.ProfileOriginalFileName : String.Empty,

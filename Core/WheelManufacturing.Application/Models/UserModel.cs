@@ -55,6 +55,8 @@ namespace WheelManufacturing.Application.Models
 
         public int? BloodGroupId { get; set; }
 
+        public int? GenderId { get; set; }
+
         public string? MobileUniqueId { get; set; }
 
         public string? AadharNumber { get; set; }
@@ -104,9 +106,6 @@ namespace WheelManufacturing.Application.Models
 
         public string? RoleName { get; set; }
 
-        public int? EmployeeLevelId { get; set; }
-        public string EmployeeLevel { get; set; }
-
         public int? ReportingTo { get; set; }
 
         public string? ReportingToName { get; set; }
@@ -145,6 +144,10 @@ namespace WheelManufacturing.Application.Models
 
         public int? BloodGroupId { get; set; }
         public string? BloodGroupName { get; set; }
+
+        public int? GenderId { get; set; }
+        public string? Gender { get; set; }
+
         public string? MobileUniqueId { get; set; }
 
         public string? AadharNumber { get; set; }

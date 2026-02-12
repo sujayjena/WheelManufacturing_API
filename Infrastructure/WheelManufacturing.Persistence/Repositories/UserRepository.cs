@@ -46,6 +46,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@DateOfJoining", parameters.DateOfJoining);
             queryParameters.Add("@EmergencyContactNumber", parameters.EmergencyContactNumber);
             queryParameters.Add("@BloodGroupId", parameters.BloodGroupId);
+            queryParameters.Add("@GenderId", parameters.GenderId);
             queryParameters.Add("@MobileUniqueId", parameters.MobileUniqueId);
             queryParameters.Add("@AadharNumber", parameters.AadharNumber);
             queryParameters.Add("@AadharOriginalFileName", parameters.AadharOriginalFileName);
