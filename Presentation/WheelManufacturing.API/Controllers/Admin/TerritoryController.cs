@@ -1103,7 +1103,7 @@ namespace WheelManufacturing.API.Controllers.Admin
 
                     foreach (var items in lstSizeObj)
                     {
-                        WorkSheet1.Cells[recordIndex, 1].Value = items.IsNational_Or_International;
+                        WorkSheet1.Cells[recordIndex, 1].Value = items.IsNational_Or_International == 1 ? "National" : items.IsNational_Or_International == 2 ? "International" : "";
                         WorkSheet1.Cells[recordIndex, 2].Value = items.CountryName;
                         WorkSheet1.Cells[recordIndex, 3].Value = items.StateName;
                         WorkSheet1.Cells[recordIndex, 4].Value = items.DistrictName;
