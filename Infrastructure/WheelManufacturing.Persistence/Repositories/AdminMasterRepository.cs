@@ -1255,5 +1255,43 @@ namespace WheelManufacturing.Persistence.Repositories
         }
 
         #endregion
+
+        #region Shift Type
+
+        public async Task<int> SaveShiftType(ShiftType_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@ShiftType", parameters.ShiftType.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveShiftType", queryParameters);
+        }
+
+        public async Task<IEnumerable<ShiftType_Response>> GetShiftTypeList(ShiftType_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<ShiftType_Response>("GetShiftTypeList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<ShiftType_Response?> GetShiftTypeById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<ShiftType_Response>("GetShiftTypeById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
     }
 }

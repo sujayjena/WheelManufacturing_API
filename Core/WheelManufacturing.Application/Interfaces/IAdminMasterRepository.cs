@@ -265,5 +265,13 @@ namespace WheelManufacturing.Application.Interfaces
         Task<TermsCondition_Response?> GetTermsConditionById(long Id);
 
         #endregion
+
+        #region Shift Type
+
+        Task<int> SaveShiftType(ShiftType_Request parameters);
+        Task<IEnumerable<ShiftType_Response>> GetShiftTypeList(ShiftType_Search parameters);
+        Task<ShiftType_Response?> GetShiftTypeById(long Id);
+
+        #endregion
     }
 }

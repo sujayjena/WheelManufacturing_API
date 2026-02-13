@@ -709,4 +709,24 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Shift Type
+
+    public class ShiftType_Search : BaseSearchEntity
+    {
+    }
+
+    public class ShiftType_Request : BaseEntity
+    {
+        public string? ShiftType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class ShiftType_Response : BaseResponseEntity
+    {
+        public string? ShiftType { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
