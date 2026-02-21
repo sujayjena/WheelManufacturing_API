@@ -368,12 +368,15 @@ namespace WheelManufacturing.Application.Models
     public class WheelDiameter_Request : BaseEntity
     {
         public string? WheelDiameter { get; set; }
+        public int? UOMId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class WheelDiameter_Response : BaseResponseEntity
     {
         public string? WheelDiameter { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -388,12 +391,15 @@ namespace WheelManufacturing.Application.Models
     public class WheelWidth_Request : BaseEntity
     {
         public string? WheelWidth { get; set; }
+        public int? UOMId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class WheelWidth_Response : BaseResponseEntity
     {
         public string? WheelWidth { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
         public bool? IsActive { get; set; }
     }
 
