@@ -793,6 +793,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@InsetName", parameters.InsetName.SanitizeValue());
+            queryParameters.Add("@UOMId", parameters.UOMId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -831,6 +832,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@WeightName", parameters.WeightName.SanitizeValue());
+            queryParameters.Add("@UOMId", parameters.UOMId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -869,6 +871,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@TyreSize", parameters.TyreSize.SanitizeValue());
+            queryParameters.Add("@UOMId", parameters.UOMId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

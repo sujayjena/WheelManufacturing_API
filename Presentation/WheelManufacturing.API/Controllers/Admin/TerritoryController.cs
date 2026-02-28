@@ -209,15 +209,16 @@ namespace WheelManufacturing.API.Controllers.Admin
 
             lstStateFailedToImport = await _territoryRepository.ImportState(lstImportedState);
 
-            _response.IsSuccess = true;
-            _response.Message = "State list imported successfully";
-
             #region Generate Excel file for Invalid Data
             if (lstStateFailedToImport.ToList().Count > 0)
             {
                 _response.Message = "Uploaded file contains invalid records, please check downloaded file for more details";
                 _response.Data = GenerateInvalidStateDataFile(lstStateFailedToImport);
-
+            }
+            else
+            {
+                _response.IsSuccess = true;
+                _response.Message = "State list imported successfully";
             }
             #endregion
 
@@ -312,8 +313,8 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 1].Value = items.StateName;
                         WorkSheet1.Cells[recordIndex, 2].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 3].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 4].Value = items.CreatorName;
 
                         recordIndex += 1;
@@ -466,15 +467,16 @@ namespace WheelManufacturing.API.Controllers.Admin
 
             lstDistrictFailedToImport = await _territoryRepository.ImportDistrict(lstImportedDistrict);
 
-            _response.IsSuccess = true;
-            _response.Message = "District list imported successfully";
-
             #region Generate Excel file for Invalid Data
             if (lstDistrictFailedToImport.ToList().Count > 0)
             {
                 _response.Message = "Uploaded file contains invalid records, please check downloaded file for more details";
                 _response.Data = GenerateInvalidDistrictDataFile(lstDistrictFailedToImport);
-
+            }
+            else
+            {
+                _response.IsSuccess = true;
+                _response.Message = "District list imported successfully";
             }
             #endregion
 
@@ -569,8 +571,8 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 1].Value = items.DistrictName;
                         WorkSheet1.Cells[recordIndex, 2].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 3].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 4].Value = items.CreatorName;
 
                         recordIndex += 1;
@@ -723,15 +725,16 @@ namespace WheelManufacturing.API.Controllers.Admin
 
             lstCityFailedToImport = await _territoryRepository.ImportCity(lstImportedCity);
 
-            _response.IsSuccess = true;
-            _response.Message = "City list imported successfully";
-
             #region Generate Excel file for Invalid Data
             if (lstCityFailedToImport.ToList().Count > 0)
             {
                 _response.Message = "Uploaded file contains invalid records, please check downloaded file for more details";
                 _response.Data = GenerateInvalidCityDataFile(lstCityFailedToImport);
-
+            }
+            else
+            {
+                _response.IsSuccess = true;
+                _response.Message = "City list imported successfully";
             }
             #endregion
 
@@ -826,8 +829,8 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 1].Value = items.CityName;
                         WorkSheet1.Cells[recordIndex, 2].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 3].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 4].Value = items.CreatorName;
 
                         recordIndex += 1;
@@ -996,15 +999,16 @@ namespace WheelManufacturing.API.Controllers.Admin
 
             lstTerritoriesFailedToImport = await _territoryRepository.ImportTerritories(lstImportedTerritories);
 
-            _response.IsSuccess = true;
-            _response.Message = "Territories list imported successfully";
-
             #region Generate Excel file for Invalid Data
             if (lstTerritoriesFailedToImport.ToList().Count > 0)
             {
                 _response.Message = "Uploaded file contains invalid records, please check downloaded file for more details";
                 _response.Data = GenerateInvalidTerritoriesDataFile(lstTerritoriesFailedToImport);
-
+            }
+            else
+            {
+                _response.IsSuccess = true;
+                _response.Message = "Territories list imported successfully";
             }
             #endregion
 
@@ -1109,8 +1113,8 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 4].Value = items.DistrictName;
                         WorkSheet1.Cells[recordIndex, 5].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 6].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 6].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 6].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 6].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 7].Value = items.CreatorName;
 
                         recordIndex += 1;

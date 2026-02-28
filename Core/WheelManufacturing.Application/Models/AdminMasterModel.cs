@@ -434,12 +434,15 @@ namespace WheelManufacturing.Application.Models
     public class Inset_Request : BaseEntity
     {
         public string? InsetName { get; set; }
+        public int? UOMId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class Inset_Response : BaseResponseEntity
     {
         public string? InsetName { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -454,12 +457,15 @@ namespace WheelManufacturing.Application.Models
     public class Weight_Request : BaseEntity
     {
         public string? WeightName { get; set; }
+        public int? UOMId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class Weight_Response : BaseResponseEntity
     {
         public string? WeightName { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -474,12 +480,15 @@ namespace WheelManufacturing.Application.Models
     public class TyreSize_Request : BaseEntity
     {
         public string? TyreSize { get; set; }
+        public int? UOMId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class TyreSize_Response : BaseResponseEntity
     {
         public string? TyreSize { get; set; }
+        public int? UOMId { get; set; }
+        public string? UOMName { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -557,16 +566,26 @@ namespace WheelManufacturing.Application.Models
         public string? ModelName { get; set; }
         public int? WheelDiameterId { get; set; }
         public string? WheelDiameter { get; set; }
+        public int? WheelDiameter_UOMId { get; set; }
+        public string? WheelDiameter_UOMName { get; set; }
         public int? WheelWidthId { get; set; }
         public string? WheelWidth { get; set; }
+        public int? WheelWidth_UOMId { get; set; }
+        public string? WheelWidth_UOMName { get; set; }
         public int? PCD_N_HId { get; set; }
         public string? PCD_N_H { get; set; }
         public int? InsetId { get; set; }
         public string? InsetName { get; set; }
+        public int? Inset_UOMId { get; set; }
+        public string? Inset_UOMName { get; set; }
         public int? WeightId { get; set; }
         public string? WeightName { get; set; }
+        public int? Weight_UOMId { get; set; }
+        public string? Weight_UOMName { get; set; }
         public int? TyreSizeId { get; set; }
         public string? TyreSize { get; set; }
+        public int? TyreSize_UOMId { get; set; }
+        public string? TyreSize_UOMName { get; set; }
         public int? BoltHoleTypeId { get; set; }
         public string? BoltHoleType { get; set; }
         public int? PaintId { get; set; }
