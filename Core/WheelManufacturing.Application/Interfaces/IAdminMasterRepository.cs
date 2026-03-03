@@ -273,5 +273,13 @@ namespace WheelManufacturing.Application.Interfaces
         Task<ShiftType_Response?> GetShiftTypeById(long Id);
 
         #endregion
+
+        #region Machine
+
+        Task<int> SaveMachine(Machine_Request parameters);
+        Task<IEnumerable<Machine_Response>> GetMachineList(Machine_Search parameters);
+        Task<Machine_Response?> GetMachineById(long Id);
+
+        #endregion
     }
 }

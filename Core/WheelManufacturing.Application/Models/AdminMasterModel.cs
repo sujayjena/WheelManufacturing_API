@@ -754,4 +754,24 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Machine
+
+    public class Machine_Search : BaseSearchEntity
+    {
+    }
+
+    public class Machine_Request : BaseEntity
+    {
+        public string? MachineName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Machine_Response : BaseResponseEntity
+    {
+        public string? MachineName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
