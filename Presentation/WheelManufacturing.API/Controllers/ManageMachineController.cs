@@ -72,15 +72,15 @@ namespace WheelManufacturing.API.Controllers
             return _response;
         }
 
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<ResponseModel> GetMachineListForAssignOperator(MachineListForAssignOperator_Search parameters)
-        //{
-        //    var objList = await _manageMachineRepository.GetMachineListForAssignOperator(parameters);
-        //    _response.Data = objList.ToList();
-        //    _response.Total = parameters.Total;
-        //    return _response;
-        //}
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMachineListForAssignOperator(MachineListForAssignOperator_Search parameters)
+        {
+            var objList = await _manageMachineRepository.GetMachineListForAssignOperator(parameters);
+            _response.Data = objList.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
 
         //[Route("[action]")]
         //[HttpPost]
