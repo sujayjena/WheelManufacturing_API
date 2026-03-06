@@ -744,12 +744,16 @@ namespace WheelManufacturing.Application.Models
     public class ShiftType_Request : BaseEntity
     {
         public string? ShiftType { get; set; }
+        public string? StartTime { get; set; }
+        public string? EndTime { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class ShiftType_Response : BaseResponseEntity
     {
         public string? ShiftType { get; set; }
+        public string? StartTime { get; set; }
+        public string? EndTime { get; set; }
         public bool? IsActive { get; set; }
     }
 

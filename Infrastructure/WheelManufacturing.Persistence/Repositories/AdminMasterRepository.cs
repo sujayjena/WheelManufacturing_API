@@ -1268,6 +1268,8 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@ShiftType", parameters.ShiftType.SanitizeValue());
+            queryParameters.Add("@StartTime", parameters.StartTime);
+            queryParameters.Add("@EndTime", parameters.EndTime);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
