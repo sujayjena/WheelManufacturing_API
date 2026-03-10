@@ -645,6 +645,7 @@ namespace WheelManufacturing.Application.Models
 
     public class MaterialMaster_Search : BaseSearchEntity
     {
+        public int? SupplierId { get; set; }
     }
 
     public class MaterialMaster_Request : BaseEntity
@@ -653,6 +654,7 @@ namespace WheelManufacturing.Application.Models
         public int? MaterialGroupId { get; set; }
         public int? UOMId { get; set; }
         public int? MaterialNameId { get; set; }
+        public int? SupplierId { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -666,6 +668,8 @@ namespace WheelManufacturing.Application.Models
         public string? MaterialName { get; set; }
         public int? UOMId { get; set; }
         public string? UOMName { get; set; }
+        public int? SupplierId { get; set; }
+        public string? SupplierCode { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -675,17 +679,21 @@ namespace WheelManufacturing.Application.Models
 
     public class SupplyTerm_Search : BaseSearchEntity
     {
+        public int? SupplierId { get; set; }
     }
 
     public class SupplyTerm_Request : BaseEntity
     {
         public string? SupplyTermName { get; set; }
+        public int? SupplierId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class SupplyTerm_Response : BaseResponseEntity
     {
         public string? SupplyTermName { get; set; }
+        public int? SupplierId { get; set; }
+        public string? SupplierCode { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -715,6 +723,7 @@ namespace WheelManufacturing.Application.Models
 
     public class TermsCondition_Search : BaseSearchEntity
     {
+        public int? SupplierId { get; set; }
     }
 
     public class TermsCondition_Request : BaseEntity
@@ -723,6 +732,7 @@ namespace WheelManufacturing.Application.Models
 
         [DefaultValue(false)]
         public bool? IsStandard { get; set; }
+        public int? SupplierId { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -730,6 +740,8 @@ namespace WheelManufacturing.Application.Models
     {
         public string? TermsConditionName { get; set; }
         public bool? IsStandard { get; set; }
+        public int? SupplierId { get; set; }
+        public string? SupplierCode { get; set; }
         public bool? IsActive { get; set; }
     }
 

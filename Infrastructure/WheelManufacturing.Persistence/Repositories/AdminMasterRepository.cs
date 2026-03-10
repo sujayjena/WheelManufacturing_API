@@ -1115,6 +1115,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@MaterialGroupId", parameters.MaterialGroupId);
             queryParameters.Add("@MaterialNameId", parameters.MaterialNameId);
             queryParameters.Add("@UOMId", parameters.UOMId);
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -1124,6 +1125,7 @@ namespace WheelManufacturing.Persistence.Repositories
         public async Task<IEnumerable<MaterialMaster_Response>> GetMaterialMasterList(MaterialMaster_Search parameters)
         {   
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
@@ -1153,6 +1155,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@SupplyTermName", parameters.SupplyTermName.SanitizeValue());
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -1162,6 +1165,7 @@ namespace WheelManufacturing.Persistence.Repositories
         public async Task<IEnumerable<SupplyTerm_Response>> GetSupplyTermList(SupplyTerm_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
@@ -1229,6 +1233,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@TermsConditionName", parameters.TermsConditionName.SanitizeValue());
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@IsStandard", parameters.IsStandard);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
@@ -1239,6 +1244,7 @@ namespace WheelManufacturing.Persistence.Repositories
         public async Task<IEnumerable<TermsCondition_Response>> GetTermsConditionList(TermsCondition_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
