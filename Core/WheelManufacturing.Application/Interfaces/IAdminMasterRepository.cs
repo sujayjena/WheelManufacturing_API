@@ -226,6 +226,14 @@ namespace WheelManufacturing.Application.Interfaces
 
         #endregion
 
+        #region Material Category
+
+        Task<int> SaveMaterialCategory(MaterialCategory_Request parameters);
+        Task<IEnumerable<MaterialCategory_Response>> GetMaterialCategoryList(MaterialCategory_Search parameters);
+        Task<MaterialCategory_Response?> GetMaterialCategoryById(long Id);
+
+        #endregion
+
         #region Material Name
 
         Task<int> SaveMaterialName(MaterialName_Request parameters);
@@ -279,6 +287,14 @@ namespace WheelManufacturing.Application.Interfaces
         Task<int> SaveMachine(Machine_Request parameters);
         Task<IEnumerable<Machine_Response>> GetMachineList(Machine_Search parameters);
         Task<Machine_Response?> GetMachineById(long Id);
+
+        #endregion
+
+        #region PR Approver
+
+        Task<int> SavePRApprover(PRApprover_Request parameters);
+        Task<IEnumerable<PRApprover_Response>> GetPRApproverList(PRApprover_Search parameters);
+        Task<PRApprover_Response?> GetPRApproverById(long Id);
 
         #endregion
     }

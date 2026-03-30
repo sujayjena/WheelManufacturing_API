@@ -1035,6 +1035,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@MaterialGroup", parameters.MaterialGroup.SanitizeValue());
+            queryParameters.Add("@MaterialCategoryId", parameters.MaterialCategoryId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -1062,6 +1063,44 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", Id);
             return (await ListByStoredProcedure<MaterialGroup_Response>("GetMaterialGroupById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Material Category
+
+        public async Task<int> SaveMaterialCategory(MaterialCategory_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@MaterialCategory", parameters.MaterialCategory.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveMaterialCategory", queryParameters);
+        }
+
+        public async Task<IEnumerable<MaterialCategory_Response>> GetMaterialCategoryList(MaterialCategory_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<MaterialCategory_Response>("GetMaterialCategoryList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<MaterialCategory_Response?> GetMaterialCategoryById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<MaterialCategory_Response>("GetMaterialCategoryById", queryParameters)).FirstOrDefault();
         }
 
         #endregion
@@ -1112,6 +1151,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@DepartmentId", parameters.DepartmentId);
+            queryParameters.Add("@MaterialCategoryId", parameters.MaterialCategoryId);
             queryParameters.Add("@MaterialGroupId", parameters.MaterialGroupId);
             queryParameters.Add("@MaterialNameId", parameters.MaterialNameId);
             queryParameters.Add("@UOMId", parameters.UOMId);
@@ -1341,6 +1381,46 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", Id);
             return (await ListByStoredProcedure<Machine_Response>("GetMachineById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
+
+        #region PR Approver
+
+        public async Task<int> SavePRApprover(PRApprover_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@ApproverType", parameters.ApproverType);
+            queryParameters.Add("@RoleId", parameters.RoleId);
+            queryParameters.Add("@EmployeeId", parameters.EmployeeId);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SavePRApprover", queryParameters);
+        }
+
+        public async Task<IEnumerable<PRApprover_Response>> GetPRApproverList(PRApprover_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<PRApprover_Response>("GetPRApproverList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<PRApprover_Response?> GetPRApproverById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<PRApprover_Response>("GetPRApproverById", queryParameters)).FirstOrDefault();
         }
 
         #endregion

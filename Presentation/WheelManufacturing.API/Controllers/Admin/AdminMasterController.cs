@@ -1602,6 +1602,64 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         #endregion
 
+        #region Material Category
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveMaterialCategory(MaterialCategory_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveMaterialCategory(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialCategoryList(MaterialCategory_Search parameters)
+        {
+            IEnumerable<MaterialCategory_Response> lstRoles = await _adminMasterRepository.GetMaterialCategoryList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMaterialCategoryById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetMaterialCategoryById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
         #region Material Name
 
         [Route("[action]")]
@@ -2006,6 +2064,64 @@ namespace WheelManufacturing.API.Controllers.Admin
             return _response;
         }
 
+        #endregion
+
+        #region PR Approver
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SavePRApprover(PRApprover_Request parameters)
+        {
+            int result = await _adminMasterRepository.SavePRApprover(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+        /*
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPRApproverList(PRApprover_Search parameters)
+        {
+            IEnumerable<PRApprover_Response> lstRoles = await _adminMasterRepository.GetPRApproverList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPRApproverById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetPRApproverById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+        */
         #endregion
     }
 }

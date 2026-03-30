@@ -607,12 +607,35 @@ namespace WheelManufacturing.Application.Models
     public class MaterialGroup_Request : BaseEntity
     {
         public string? MaterialGroup { get; set; }
+        public int? MaterialCategoryId { get; set; }
         public bool? IsActive { get; set; }
     }
 
     public class MaterialGroup_Response : BaseResponseEntity
     {
         public string? MaterialGroup { get; set; }
+        public int? MaterialCategoryId { get; set; }
+        public string? MaterialCategory { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Material Category
+
+    public class MaterialCategory_Search : BaseSearchEntity
+    {
+    }
+
+    public class MaterialCategory_Request : BaseEntity
+    {
+        public string? MaterialCategory { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class MaterialCategory_Response : BaseResponseEntity
+    {
+        public string? MaterialCategory { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -651,6 +674,7 @@ namespace WheelManufacturing.Application.Models
     public class MaterialMaster_Request : BaseEntity
     {
         public int? DepartmentId { get; set; }
+        public int? MaterialCategoryId { get; set; }
         public int? MaterialGroupId { get; set; }
         public int? UOMId { get; set; }
         public int? MaterialNameId { get; set; }
@@ -662,6 +686,9 @@ namespace WheelManufacturing.Application.Models
     {
         public int? DepartmentId { get; set; }
         public string? DepartmentName { get; set; }
+        public string? ItemCode { get; set; }
+        public int? MaterialCategoryId { get; set; }
+        public string? MaterialCategory { get; set; }
         public int? MaterialGroupId { get; set; }
         public string? MaterialGroup { get; set; }
         public int? MaterialNameId { get; set; }
@@ -786,6 +813,34 @@ namespace WheelManufacturing.Application.Models
     public class Machine_Response : BaseResponseEntity
     {
         public string? MachineName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region PR Approver
+
+    public class PRApprover_Search : BaseSearchEntity
+    {
+    }
+
+    public class PRApprover_Request : BaseEntity
+    {
+        public int? ApproverType { get; set; }
+        public int? RoleId { get; set; }
+        public int? EmployeeId { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class PRApprover_Response : BaseResponseEntity
+    {
+        public int? ApproverType { get; set; }
+        public int? RoleId { get; set; }
+        public string? RoleName { get; set; }
+        public int? EmployeeId { get; set; }
+        public string? EmployeeName { get; set; }
+        public int? ReportingTo { get; set; }
+        public string? ReportingToName { get; set; }
         public bool? IsActive { get; set; }
     }
 
