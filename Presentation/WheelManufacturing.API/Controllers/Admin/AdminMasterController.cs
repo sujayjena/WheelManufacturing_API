@@ -2095,7 +2095,6 @@ namespace WheelManufacturing.API.Controllers.Admin
             return _response;
         }
 
-        /*
         [Route("[action]")]
         [HttpPost]
         public async Task<ResponseModel> GetPRApproverList(PRApprover_Search parameters)
@@ -2121,7 +2120,6 @@ namespace WheelManufacturing.API.Controllers.Admin
             }
             return _response;
         }
-        */
         #endregion
     }
 }
