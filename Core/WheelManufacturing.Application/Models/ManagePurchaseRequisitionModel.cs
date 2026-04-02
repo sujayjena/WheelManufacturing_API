@@ -68,6 +68,27 @@ namespace WheelManufacturing.Application.Models
         public bool? IsActive { get; set; }
         public List<PurchaseRequisitionDetails_Response> purchaseRequisitionDetails { get; set; }
     }
+
+    public class PurchaseRequisition_ApproveNReject
+    {
+        public int? Id { get; set; }
+        public int? StatusId { get; set; }
+        public string? Remarks { get; set; }
+    }
+    public class PurchaseRequisitionApproveNRejectHistory_Search : BaseSearchEntity
+    {
+        public int? PurchaseRequisitionId { get; set; }
+    }
+    public class PurchaseRequisitionApproveNRejectHistory_Response
+    {
+        public int? Id { get; set; }
+        public int? PurchaseRequisitionId { get; set; }
+        public string? Remarks { get; set; }
+        public string? ApproveOrReject { get; set; }
+        public string? CreatorName { get; set; }
+        public long CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+    }
     #endregion
 
     #region Purchase Requisition Details

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using WheelManufacturing.Application.Enums;
 using WheelManufacturing.Application.Helpers;
 using WheelManufacturing.Application.Interfaces;
@@ -94,6 +95,56 @@ namespace WheelManufacturing.API.Controllers
                 }
                 _response.Data = vResultObj;
             }
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> PurchaseRequisitionApproveNReject(PurchaseRequisition_ApproveNReject parameters)
+        {
+            if (parameters.Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                int resultExpenseDetails = await _managePurchaseRequisitionRepository.PurchaseRequisitionApproveNReject(parameters);
+
+                if (resultExpenseDetails == (int)SaveOperationEnums.NoRecordExists)
+                {
+                    _response.Message = "No record exists";
+                }
+                else if (resultExpenseDetails == (int)SaveOperationEnums.ReocrdExists)
+                {
+                    _response.Message = "Record already exists";
+                }
+                else if (resultExpenseDetails == (int)SaveOperationEnums.NoResult)
+                {
+                    _response.Message = "Something went wrong, please try again";
+                }
+                else
+                {
+                    if (parameters.StatusId == 2)
+                    {
+                        _response.Message = "Record Approved successfully";
+                    }
+                    else if (parameters.StatusId == 3)
+                    {
+                        _response.Message = "Record Rejected successfully";
+                    }
+                }
+            }
+
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPurchaseRequisitionApproveNRejectHistoryListById(PurchaseRequisitionApproveNRejectHistory_Search parameters)
+        {
+            IEnumerable<PurchaseRequisitionApproveNRejectHistory_Response> lstObj = await _managePurchaseRequisitionRepository.GetPurchaseRequisitionApproveNRejectHistoryListById(parameters);
+            _response.Data = lstObj.ToList();
+            _response.Total = parameters.Total;
             return _response;
         }
     }

@@ -61,6 +61,26 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@Id", Id);
             return (await ListByStoredProcedure<PurchaseRequisition_Response>("GetPurchaseRequisitionById", queryParameters)).FirstOrDefault();
         }
+        public async Task<int> PurchaseRequisitionApproveNReject(PurchaseRequisition_ApproveNReject parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@StatusId", parameters.StatusId);
+            queryParameters.Add("@Remarks", parameters.Remarks);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("PurchaseRequisitionApproveNReject", queryParameters);
+        }
+
+        public async Task<IEnumerable<PurchaseRequisitionApproveNRejectHistory_Response>> GetPurchaseRequisitionApproveNRejectHistoryListById(PurchaseRequisitionApproveNRejectHistory_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@PurchaseRequisitionId", parameters.PurchaseRequisitionId);
+
+            var result = await ListByStoredProcedure<PurchaseRequisitionApproveNRejectHistory_Response>("GetPurchaseRequisitionApproveNRejectHistoryListById", queryParameters);
+            return result;
+        }
         #endregion
 
         #region Purchase Requisition Details

@@ -13,6 +13,8 @@ namespace WheelManufacturing.Application.Interfaces
         Task<int> SavePurchaseRequisition(PurchaseRequisition_Request parameters);
         Task<IEnumerable<PurchaseRequisitionList_Response>> GetPurchaseRequisitionList(PurchaseRequisition_Search parameters);
         Task<PurchaseRequisition_Response?> GetPurchaseRequisitionById(long Id);
+        Task<int> PurchaseRequisitionApproveNReject(PurchaseRequisition_ApproveNReject parameters);
+        Task<IEnumerable<PurchaseRequisitionApproveNRejectHistory_Response>> GetPurchaseRequisitionApproveNRejectHistoryListById(PurchaseRequisitionApproveNRejectHistory_Search parameters);
         #endregion
 
         #region Purchase Requisition Details
