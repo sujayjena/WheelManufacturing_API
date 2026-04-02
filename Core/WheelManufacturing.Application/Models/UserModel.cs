@@ -1,16 +1,18 @@
-﻿using WheelManufacturing.Domain.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WheelManufacturing.Domain.Entities;
+using WheelManufacturing.Persistence.Repositories;
 
 namespace WheelManufacturing.Application.Models
 {
-    public class UserModel
+    public class User_Search: BaseSearchEntity
     {
+        public int? RoleId { get; set; }
     }
 
     public class User_Request : BaseEntity

@@ -602,6 +602,7 @@ namespace WheelManufacturing.Application.Models
 
     public class MaterialGroup_Search : BaseSearchEntity
     {
+        public int? MaterialCategoryId { get; set; }
     }
 
     public class MaterialGroup_Request : BaseEntity

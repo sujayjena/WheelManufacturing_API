@@ -103,7 +103,7 @@ namespace WheelManufacturing.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetUserList(BaseSearchEntity parameters)
+        public async Task<ResponseModel> GetUserList(User_Search parameters)
         {
             IEnumerable<User_Response> lstUsers = await _userRepository.GetUserList(parameters);
             _response.Data = lstUsers.ToList();
@@ -281,7 +281,7 @@ namespace WheelManufacturing.API.Controllers.Admin
             ExcelWorksheet WorkSheet1;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            var request = new BaseSearchEntity();
+            var request = new User_Search();
             request.IsActive = IsActive;
 
             IEnumerable<User_Response> lstSizeObj = await _userRepository.GetUserList(request);

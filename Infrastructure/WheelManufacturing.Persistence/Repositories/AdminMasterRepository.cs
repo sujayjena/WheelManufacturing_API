@@ -1045,6 +1045,7 @@ namespace WheelManufacturing.Persistence.Repositories
         public async Task<IEnumerable<MaterialGroup_Response>> GetMaterialGroupList(MaterialGroup_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@MaterialCategoryId", parameters.MaterialCategoryId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
