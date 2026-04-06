@@ -122,17 +122,14 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 1].Value = items.DepartmentName;
                         WorkSheet1.Cells[recordIndex, 2].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 3].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 3].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 4].Value = items.CreatorName;
 
                         recordIndex += 1;
                     }
 
-                    WorkSheet1.Column(1).AutoFit();
-                    WorkSheet1.Column(2).AutoFit();
-                    WorkSheet1.Column(3).AutoFit();
-                    WorkSheet1.Column(4).AutoFit();
+                    WorkSheet1.Columns.AutoFit();
 
                     excelExportData.SaveAs(msExportDataFile);
                     msExportDataFile.Position = 0;
@@ -256,19 +253,14 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 3].Value = items.EmployeeLevel;
                         WorkSheet1.Cells[recordIndex, 4].Value = items.IsActive == true ? "Active" : "Inactive";
 
-                        WorkSheet1.Cells[recordIndex, 5].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 5].Value = items.CreatedDate;
+                        //WorkSheet1.Cells[recordIndex, 5].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+                        WorkSheet1.Cells[recordIndex, 5].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 6].Value = items.CreatorName;
 
                         recordIndex += 1;
                     }
 
-                    WorkSheet1.Column(1).AutoFit();
-                    WorkSheet1.Column(2).AutoFit();
-                    WorkSheet1.Column(3).AutoFit();
-                    WorkSheet1.Column(4).AutoFit();
-                    WorkSheet1.Column(5).AutoFit();
-                    WorkSheet1.Column(6).AutoFit();
+                    WorkSheet1.Columns.AutoFit();
 
                     excelExportData.SaveAs(msExportDataFile);
                     msExportDataFile.Position = 0;
@@ -391,17 +383,13 @@ namespace WheelManufacturing.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 3].Value = items.IsActive == true ? "Active" : "Inactive";
 
                         WorkSheet1.Cells[recordIndex, 4].Style.Numberformat.Format = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-                        WorkSheet1.Cells[recordIndex, 4].Value = items.CreatedDate;
+                        WorkSheet1.Cells[recordIndex, 4].Value = Convert.ToDateTime(items.CreatedDate).ToString("dd/MM/yyyy");
                         WorkSheet1.Cells[recordIndex, 5].Value = items.CreatorName;
 
                         recordIndex += 1;
                     }
 
-                    WorkSheet1.Column(1).AutoFit();
-                    WorkSheet1.Column(2).AutoFit();
-                    WorkSheet1.Column(3).AutoFit();
-                    WorkSheet1.Column(4).AutoFit();
-                    WorkSheet1.Column(5).AutoFit();
+                    WorkSheet1.Columns.AutoFit();
 
                     excelExportData.SaveAs(msExportDataFile);
                     msExportDataFile.Position = 0;
