@@ -29,6 +29,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@ContactPerson", parameters.ContactPerson);
             queryParameters.Add("@MobileNo", parameters.MobileNo);
             queryParameters.Add("@EmailId", parameters.EmailId);
+            queryParameters.Add("@IsDefault", parameters.IsDefault);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

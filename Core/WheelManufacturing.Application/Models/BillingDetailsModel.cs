@@ -34,6 +34,7 @@ namespace WheelManufacturing.Application.Models
 
         [DefaultValue("")]
         public string? GST_Base64 { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -57,6 +58,7 @@ namespace WheelManufacturing.Application.Models
         public string? GSTOriginalFileName { get; set; }
         public string? GSTFileName { get; set; }
         public string? GSTUrl { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
 }

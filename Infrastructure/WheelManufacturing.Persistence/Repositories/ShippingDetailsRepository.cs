@@ -33,6 +33,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@CityId", parameters.CityId);
             queryParameters.Add("@PinCode", parameters.PinCode);
+            queryParameters.Add("@IsDefault", parameters.IsDefault);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

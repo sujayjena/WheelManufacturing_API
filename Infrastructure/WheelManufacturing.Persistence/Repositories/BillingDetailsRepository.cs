@@ -37,6 +37,7 @@ namespace WheelManufacturing.Persistence.Repositories
             queryParameters.Add("@GSTNumber", parameters.GSTNumber);
             queryParameters.Add("@GSTOriginalFileName", parameters.GSTOriginalFileName);
             queryParameters.Add("@GSTFileName", parameters.GSTFileName);
+            queryParameters.Add("@IsDefault", parameters.IsDefault);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

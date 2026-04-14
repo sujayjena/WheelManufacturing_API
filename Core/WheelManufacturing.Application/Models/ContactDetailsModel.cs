@@ -17,6 +17,7 @@ namespace WheelManufacturing.Application.Models
         public string? ContactPerson { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailId { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
     public class ContactDetails_Response : BaseEntity
@@ -27,6 +28,7 @@ namespace WheelManufacturing.Application.Models
         public string? ContactPerson { get; set; }
         public string? MobileNo { get; set; }
         public string? EmailId { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace WheelManufacturing.Application.Models
         public int? DistrictId { get; set; }
         public int? CityId { get; set; }
         public string? PinCode { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
 
@@ -39,6 +40,7 @@ namespace WheelManufacturing.Application.Models
         public int? CityId { get; set; }
         public string? CityName { get; set; }
         public string? PinCode { get; set; }
+        public bool? IsDefault { get; set; }
         public bool? IsActive { get; set; }
     }
 }
