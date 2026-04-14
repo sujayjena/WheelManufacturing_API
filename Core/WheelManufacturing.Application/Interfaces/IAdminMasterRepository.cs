@@ -297,5 +297,13 @@ namespace WheelManufacturing.Application.Interfaces
         Task<PRApprover_Response?> GetPRApproverById(long Id);
 
         #endregion
+
+        #region Payment Term
+
+        Task<int> SavePaymentTerm(PaymentTerm_Request parameters);
+        Task<IEnumerable<PaymentTerm_Response>> GetPaymentTermList(PaymentTerm_Search parameters);
+        Task<PaymentTerm_Response?> GetPaymentTermById(long Id);
+
+        #endregion
     }
 }

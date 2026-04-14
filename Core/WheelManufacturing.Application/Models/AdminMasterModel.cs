@@ -846,4 +846,24 @@ namespace WheelManufacturing.Application.Models
     }
 
     #endregion
+
+    #region Payment Term
+
+    public class PaymentTerm_Search : BaseSearchEntity
+    {
+    }
+
+    public class PaymentTerm_Request : BaseEntity
+    {
+        public string? PaymentTermName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class PaymentTerm_Response : BaseResponseEntity
+    {
+        public string? PaymentTermName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }

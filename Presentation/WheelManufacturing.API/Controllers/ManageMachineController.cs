@@ -82,14 +82,14 @@ namespace WheelManufacturing.API.Controllers
             return _response;
         }
 
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<ResponseModel> GetOperatorNameForSelectList(OperatorNameSelectList_Search parameters)
-        //{
-        //    IEnumerable<OperatorNameSelectList_Response> lstResponse = await _manageMachineRepository.GetOperatorNameForSelectList(parameters);
-        //    _response.Data = lstResponse.ToList();
-        //    return _response;
-        //}
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetOperatorNameForSelectList(OperatorNameSelectList_Search parameters)
+        {
+            IEnumerable<OperatorNameSelectList_Response> lstResponse = await _manageMachineRepository.GetOperatorNameForSelectList(parameters);
+            _response.Data = lstResponse.ToList();
+            return _response;
+        }
         #endregion
     }
 }

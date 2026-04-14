@@ -48,6 +48,7 @@ namespace WheelManufacturing.Persistence
             services.AddScoped<IManageMachineRepository, ManageMachineRepository>();
             services.AddScoped<IManageAttendanceRepository, ManageAttendanceRepository>();
             services.AddScoped<IManagePurchaseRequisitionRepository, ManagePurchaseRequisitionRepository>();
+            services.AddScoped<IManageSupplierPORepository, ManageSupplierPORepository>();
         }
     }
 }
