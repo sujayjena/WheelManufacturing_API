@@ -20,6 +20,7 @@ namespace WheelManufacturing.Application.Interfaces
         #region Purchase Requisition Details
         Task<int> SavePurchaseRequisitionDetails(PurchaseRequisitionDetails_Request parameters);
         Task<IEnumerable<PurchaseRequisitionDetails_Response>> GetPurchaseRequisitionDetailsList(PurchaseRequisitionDetails_Search parameters);
+        Task<int> DeletePurchaseRequisitionDetails(int Id);
         #endregion
     }
 }

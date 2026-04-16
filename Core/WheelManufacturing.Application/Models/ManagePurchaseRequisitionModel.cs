@@ -28,6 +28,7 @@ namespace WheelManufacturing.Application.Models
     public class PurchaseRequisition_Search : BaseSearchEntity
     {
         public int? StatusId { get; set; }
+        public int? SupplierId { get; set; }
     }
 
     public class PurchaseRequisitionList_Response : BaseResponseEntity

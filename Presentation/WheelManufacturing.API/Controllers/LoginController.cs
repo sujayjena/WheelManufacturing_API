@@ -173,8 +173,8 @@ namespace WheelManufacturing.API.Controllers
 
             if (loginResponse != null)
             {
-                if (Convert.ToDateTime(DateTime.Now) < Convert.ToDateTime("2026-04-15"))
-                {
+                //if (Convert.ToDateTime(DateTime.Now) < Convert.ToDateTime("##"))
+                //{
                     if (loginResponse.IsActive == true && (loginResponse.IsWebUser == true && parameters.IsWebOrMobileUser == "W" || loginResponse.IsMobileUser == true && parameters.IsWebOrMobileUser == "M"))
                 {
                     tokenResponse = _jwt.GenerateJwtToken(loginResponse);
@@ -248,12 +248,12 @@ namespace WheelManufacturing.API.Controllers
                         _response.IsSuccess = false;
                         _response.Message = ErrorConstants.InactiveProfileError;
                     }
-                }
-                else
-                {
-                    _response.IsSuccess = false;
-                    _response.Message = "Unhandled internal server Error.";
-                }
+                //}
+                //else
+                //{
+                //    _response.IsSuccess = false;
+                //    _response.Message = "Unhandled internal server Error.";
+                //}
             }
             else
             {

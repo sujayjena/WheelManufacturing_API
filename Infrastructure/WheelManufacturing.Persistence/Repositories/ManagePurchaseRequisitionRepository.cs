@@ -43,6 +43,7 @@ namespace WheelManufacturing.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
 
             queryParameters.Add("@StatusId", parameters.StatusId);
+            queryParameters.Add("@SupplierId", parameters.SupplierId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
@@ -103,7 +104,6 @@ namespace WheelManufacturing.Persistence.Repositories
 
             return await SaveByStoredProcedure<int>("SavePurchaseRequisitionDetails", queryParameters);
         }
-
         public async Task<IEnumerable<PurchaseRequisitionDetails_Response>> GetPurchaseRequisitionDetailsList(PurchaseRequisitionDetails_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
@@ -121,7 +121,14 @@ namespace WheelManufacturing.Persistence.Repositories
 
             return result;
         }
+        public async Task<int> DeletePurchaseRequisitionDetails(int Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
 
+            queryParameters.Add("@Id", Id);
+
+            return await SaveByStoredProcedure<int>("DeletePurchaseRequisitionDetails", queryParameters);
+        }
         #endregion
     }
 }

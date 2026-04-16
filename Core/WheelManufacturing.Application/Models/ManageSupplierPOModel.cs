@@ -13,6 +13,7 @@ namespace WheelManufacturing.Application.Models
     #region Supplier PO
     public class SupplierPO_Search : BaseSearchEntity
     {
+        public int? SupplierId { get; set; }
     }
 
     public class SupplierPO_Request : BaseEntity

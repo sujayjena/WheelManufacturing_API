@@ -108,32 +108,32 @@ namespace WheelManufacturing.API.Controllers
             return _response;
         }
 
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<ResponseModel> DeleteManageSupplierPODetails(int Id)
-        //{
-        //    int result = await _manageSupplierPORepository.DeleteSupplierPODetails(Id);
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> DeleteSupplierPODetails(int Id)
+        {
+            int result = await _manageSupplierPORepository.DeleteSupplierPODetails(Id);
 
-        //    if (result == (int)SaveOperationEnums.NoRecordExists)
-        //    {
-        //        _response.Message = "No record exists";
-        //    }
-        //    else if (result == (int)SaveOperationEnums.ReocrdExists)
-        //    {
-        //        _response.Message = "Record already exists";
-        //    }
-        //    else if (result == (int)SaveOperationEnums.NoResult)
-        //    {
-        //        _response.Message = "Something went wrong, please try again";
-        //    }
-        //    else
-        //    {
-        //        _response.Message = "Record deleted successfully";
-        //    }
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record deleted successfully";
+            }
 
-        //    _response.Id = result;
-        //    return _response;
-        //}
+            _response.Id = result;
+            return _response;
+        }
         #endregion
     }
 }

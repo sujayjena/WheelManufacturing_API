@@ -66,14 +66,14 @@ namespace WheelManufacturing.API.Controllers
             return _response;
         }
 
-        //[Route("[action]")]
-        //[HttpPost]
-        //public async Task<ResponseModel> GetEmployeeListForAttendance(EmployeeListForAttendance_Search parameters)
-        //{
-        //    IEnumerable<EmployeeListForAttendance_Response> lstUsers = await _manageAttendanceRepository.GetEmployeeListForAttendance(parameters);
-        //    _response.Data = lstUsers.ToList();
-        //    _response.Total = parameters.Total;
-        //    return _response;
-        //}
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetEmployeeListForAttendance(EmployeeListForAttendance_Search parameters)
+        {
+            IEnumerable<EmployeeListForAttendance_Response> lstUsers = await _manageAttendanceRepository.GetEmployeeListForAttendance(parameters);
+            _response.Data = lstUsers.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
     }
 }
