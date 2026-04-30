@@ -63,6 +63,7 @@ namespace WheelManufacturing.Application.Models
         public string? PanOriginalFileName { get; set; }
         public string? PanFileName { get; set; }
         public string? PanUrl { get; set; }
+        public string? GSTNumber { get; set; }
         public bool? IsActive { get; set; }
     }
 }

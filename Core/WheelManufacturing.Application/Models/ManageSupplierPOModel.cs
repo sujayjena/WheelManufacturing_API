@@ -114,6 +114,8 @@ namespace WheelManufacturing.Application.Models
         public string? BillingStateName { get; set; }
         public int? BillingDistrictId { get; set; }
         public string? BillingDistrictName { get; set; }
+        public int? BillingCityId { get; set; }
+        public string? BillingCityName { get; set; }
         public string? BillingPinCode { get; set; }
         public int? ShippingAddressId { get; set; }
         public int? ShippingIsNational_Or_International { get; set; }
@@ -124,6 +126,8 @@ namespace WheelManufacturing.Application.Models
         public string? ShippingStateName { get; set; }
         public int? ShippingDistrictId { get; set; }
         public string? ShippingDistrictName { get; set; }
+        //public int? ShippingCityId { get; set; }
+        //public string? ShippingCityName { get; set; }
         public string? ShippingPinCode { get; set; }
         public decimal? SubTotal { get; set; }
         public decimal? TotalCGST { get; set; }
